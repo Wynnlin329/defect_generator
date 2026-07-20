@@ -1,17 +1,10 @@
 // api/index.js
 import axios from 'axios';
-import { useAuthStore } from '../stores/auth';
-
-
-
-const modelsFileName = ['cutpaste.yaml','mode1.yaml','mode2.yaml','anomalydiffusion.yaml']
-
-
-
+import { getRuntimeConfig } from '@/config/runtimeConfig';
 
 // 設置基礎配置（可根據需求調整）
 const apiClient = axios.create({
-  baseURL: 'http://192.168.50.94:6060/gdai/v1/api', // 替換為你的 API 基礎路徑
+  baseURL: getRuntimeConfig().algorithmApiBaseUrl,
   timeout: 500000, // 請求超時
   headers: {
     'Accept': 'application/json',
@@ -92,7 +85,7 @@ export const generateCutPasteImage = async (imageFile, drawBboxes, tokenType, ac
       throw new Error('無法從響應中提取 message');
     }
 
-    // 假設 message 格式為 "Output images are saved in users/cpc8/result/cutpaste_outputDir"
+    // 假設 message 格式為 "Output images are saved in users/<user>/result/cutpaste_outputDir"
     const pathParts = message.split('/');
     const cutpasteOutputDir = pathParts[pathParts.length - 1]; // 提取最後一部分 "cutpaste_outputDir"
 
@@ -125,7 +118,7 @@ export const generateShapeMode1 = async (imageFile, drawBboxes, tokenType, acces
     );
     // 提取 Shape Mode1_outputDir
     const message = response.data?.message;
-    // 假設 message 格式為 "Output images are saved in users/cpc8/result/mode1_outputDir"
+    // 假設 message 格式為 "Output images are saved in users/<user>/result/mode1_outputDir"
     const pathParts = message.split('/');
     console.log("pathParts :", pathParts)
     const shapeOutputDir = pathParts[pathParts.length - 1]; // 提取最後一部分 "cutpaste_outputDir"
@@ -161,7 +154,7 @@ export const generateShapeMode2 = async (imageFile, maskFile, drawBboxes, tokenT
 
       // 提取 Shape Mode1_outputDir
       const message = response.data?.message;
-      // 假設 message 格式為 "Output images are saved in users/cpc8/result/mode2_outputDir"
+      // 假設 message 格式為 "Output images are saved in users/<user>/result/mode2_outputDir"
       const pathParts = message.split('/');
       console.log("pathParts :", pathParts)
       const shapeOutputDir = pathParts[pathParts.length - 1]; // 提取最後一部分 "mode2_outputDir"
@@ -251,7 +244,7 @@ export const generateDiffusion = async (drawBboxes, uploadId, tokenType, accessT
     );
     // 提取 diffusion_outputDir
     const message = response.data?.message;
-    // 假設 message 格式為 "Output images are saved in users/cpc8/result/diffusion_outputDir"
+    // 假設 message 格式為 "Output images are saved in users/<user>/result/diffusion_outputDir"
     const pathParts = message.split('/');
     console.log("pathParts :", pathParts)
     const diffusionOutputDir = pathParts[pathParts.length - 1]; // 提取最後一部分 "diffusion_outputDir"

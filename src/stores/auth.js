@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import axios from 'axios';
+import { getRuntimeConfig } from '@/config/runtimeConfig';
 
 export const useAuthStore = defineStore('auth', () => {
-  const BASE_API_URL = ref('http://192.168.50.94:6060/gdai/v1');
   const username = ref('');
   const accessToken = ref('');
   const tokenType = ref('');
@@ -13,16 +13,21 @@ export const useAuthStore = defineStore('auth', () => {
   const login = async (user, pass) => {
     isLoading.value = true;
     try {
+      const { authBaseUrl, oauthClientId } = getRuntimeConfig();
+      const tokenRequest = new URLSearchParams({
+        grant_type: 'password',
+        username: user,
+        password: pass,
+        scope: '',
+      });
+
+      if (oauthClientId) {
+        tokenRequest.set('client_id', oauthClientId);
+      }
+
       const response = await axios.post(
-        `${BASE_API_URL.value}/api/oauth2/token`,
-        new URLSearchParams({
-          grant_type: 'password',
-          username: user,
-          password: pass,
-          scope: '',
-          client_id: 'string',
-          client_secret: 'string'
-        }).toString(),
+        `${authBaseUrl}/api/oauth2/token`,
+        tokenRequest.toString(),
         {
           headers: {
             'accept': 'application/json',

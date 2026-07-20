@@ -1,31 +1,23 @@
 <script setup>
 import { ref } from 'vue';
-import axios from 'axios';
 import { useAuthStore } from '../stores/auth';
 
-// API 基礎 URL（可修改）
-const BASE_API_URL = ref('http://192.168.50.94:6060/gdai/v1');
-
-const username = ref('cpc8'); // 預設值
-const password = ref('cpc8');   // 預設值
-// const accessToken = ref('');
-// const tokenType = ref('');
-const isLoading = ref(false);
+const username = ref('');
+const password = ref('');
 const errorMessage = ref('');
 const showDialog = ref(false);
-// const isLoggedIn = ref(false);
 
 const authStore = useAuthStore();
 
 const showLoginDialog = () => {
   showDialog.value = true;
   errorMessage.value = ''; // 重置錯誤訊息
-  username.value = 'cpc8'; // 重置為預設值，可選
-  password.value = 'cpc8';
+  username.value = '';
+  password.value = '';
 };
 
 const closeDialog = () => {
-  if (!isLoading.value) {
+  if (!authStore.isLoading) {
     showDialog.value = false;
   }
 };
@@ -38,53 +30,6 @@ const handleLogin = async () => {
     errorMessage.value = '登入失敗: ' + (error.response?.data?.message || error.message);
   }
 };
-
-// 登入函數
-// const login = async () => {
-//   isLoading.value = true;
-//   errorMessage.value = '';
-
-//   try {
-//     const response = await axios.post(
-//       `${BASE_API_URL.value}/api/oauth2/token`,
-//       new URLSearchParams({
-//         grant_type: 'password',
-//         username: username.value,
-//         password: password.value,
-//         scope: '',
-//         client_id: 'string',
-//         client_secret: 'string'
-//       }).toString(),
-//       {
-//         headers: {
-//           'accept': 'application/json',
-//           'Content-Type': 'application/x-www-form-urlencoded'
-//         }
-//       }
-//     );
-
-//     // 提取回應資料
-//     accessToken.value = response.data.access_token;
-//     tokenType.value = response.data.token_type;
-//     isLoggedIn.value = true;
-//     showDialog.value = false; // 登入成功後關閉對話框
-//     console.log('登入成功:', response.data);
-//   } catch (error) {
-//     errorMessage.value = '登入失敗: ' + (error.response?.data?.message || error.message);
-//     console.error('登入錯誤:', error);
-//   } finally {
-//     isLoading.value = false;
-//   }
-// };
-
-// // 登出函數
-// const logout = () => {
-//   accessToken.value = '';
-//   tokenType.value = '';
-//   isLoggedIn.value = false;
-//   console.log('已登出');
-// };
-
 
 </script>
 <template>

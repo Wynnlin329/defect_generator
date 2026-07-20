@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Dependencies and build outputs
+node_modules/
+dist/
+dist-ssr/
+coverage/
+
+# Local environment and runtime files
+.env
+.env.*
+!.env.example
+*.local
+*.log
+
+# Test and tool output
+cypress/screenshots/
+cypress/videos/
+.vite/
