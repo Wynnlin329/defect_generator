@@ -1,0 +1,8 @@
+output_dir: result/mode2_fixture
+generation:
+  num_images: 1
+  params:
+    draw_lines:
+      nb_lines: 2
+drawing_primitives:
+  - draw_lines

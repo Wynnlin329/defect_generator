@@ -7,6 +7,8 @@ import { useApiData } from '../../stores/apiData';
 import jsYaml from 'js-yaml';
 import {elementToFileAndBlob} from '../../stores/elementToBlob.js'
 import {useConfigData} from '../../stores/configData.js'
+import { mapClientPointToBitmap } from '../../utils/canvasGeometry'
+import { releaseObjectUrl, replaceObjectUrl } from '../../utils/objectUrl'
 
 
 //初始化參數面板
@@ -1084,12 +1086,11 @@ const setupCanvas = async (state) => {
 // 取得滑鼠相對 Canvas 的位置
 const getMousePos = (canvasEl, event) => {
   const rect = canvasEl.getBoundingClientRect();
-  const scaleX = canvasEl.width / rect.width; // 缩放因子 X
-  const scaleY = canvasEl.height / rect.height; // 缩放因子 Y
-  return {
-    x: (event.clientX - rect.left) * scaleX,
-    y: (event.clientY - rect.top) * scaleY
-  };
+  return mapClientPointToBitmap(
+    { clientX: event.clientX, clientY: event.clientY },
+    rect,
+    { width: canvasEl.width, height: canvasEl.height }
+  );
 };
 const startDrawing = (state,event) => {
   state.drawing = true;
@@ -1466,6 +1467,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize(canvasStates[0]))
   window.removeEventListener('resize', handleResize(canvasStates[1]))
+  releaseObjectUrl(outputResultImageUrl.value)
 })
 
 const valueToArrayCutPaste = (modelConfigParam,value) =>{
@@ -1903,11 +1905,12 @@ const fetchImage = async (imagePath) => {
 
     isLoading.value = true;
     error.value = null;
+    releaseObjectUrl(outputResultImageUrl.value);
     outputResultImageUrl.value = null;
 
     try {
       const blob = await reviewResultData(imagePath, authStore.tokenType, authStore.accessToken);
-      outputResultImageUrl.value = URL.createObjectURL(blob); // 將 Blob 轉為臨時 URL
+      outputResultImageUrl.value = replaceObjectUrl(outputResultImageUrl.value, blob);
       console.log("outputResultImageUrl.value  :",outputResultImageUrl.value)
     } catch (err) {
       error.value = err.message;

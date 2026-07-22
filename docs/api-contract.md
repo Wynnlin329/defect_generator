@@ -210,12 +210,14 @@ Authorization: <token_type> <access_token>
 在接真實 backend 前，mock tests 應至少覆蓋：
 
 - token success／invalid credential／expired token。
-- 四份 valid YAML、missing keys、wrong type、unsupported version。
-- 各 generator success、4xx validation、401、5xx、timeout、malformed message。
-- upload image/mask count mismatch 與 invalid `upload_id`。
+- [TASK-003部分完成] 四份 valid YAML、missing key、wrong type、malformed YAML與round-trip；unsupported version仍未定義正式schema。
+- [TASK-003部分完成] 各 generator success與malformed message；4xx validation、401、5xx與timeout仍待補。
+- [TASK-003部分完成] upload image/mask的multipart順序與`upload_id` success；count mismatch與invalid `upload_id`仍待補。
 - diffusion model load success／already loaded／GPU unavailable。
-- empty／partial／expired result folder。
-- image blob MIME mismatch、download missing filename、network interruption。
+- [TASK-003部分完成] result directory/data success；empty、partial與expired result folder仍待補。
+- [TASK-003部分完成] image blob request與download missing filename fallback；MIME mismatch與network interruption仍待補。
+
+TASK-003的mock tests只characterise目前frontend request/response行為；它們不把human-readable `message`、YAML結構或錯誤形狀提升為正式backend contract。
 
 ## 11. Live Integration Gate
 

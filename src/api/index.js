@@ -1,6 +1,7 @@
 // api/index.js
 import axios from 'axios';
 import { getRuntimeConfig } from '@/config/runtimeConfig';
+import { extractOutputFolder } from './responseParsers';
 
 // 設置基礎配置（可根據需求調整）
 const apiClient = axios.create({
@@ -85,11 +86,7 @@ export const generateCutPasteImage = async (imageFile, drawBboxes, tokenType, ac
       throw new Error('無法從響應中提取 message');
     }
 
-    // 假設 message 格式為 "Output images are saved in users/<user>/result/cutpaste_outputDir"
-    const pathParts = message.split('/');
-    const cutpasteOutputDir = pathParts[pathParts.length - 1]; // 提取最後一部分 "cutpaste_outputDir"
-
-    return cutpasteOutputDir;
+    return extractOutputFolder(message);
     } catch (error) {
       throw new Error(`Failed to generate cutPaste image: ${error.message}`);
     }
@@ -117,13 +114,7 @@ export const generateShapeMode1 = async (imageFile, drawBboxes, tokenType, acces
       }
     );
     // 提取 Shape Mode1_outputDir
-    const message = response.data?.message;
-    // 假設 message 格式為 "Output images are saved in users/<user>/result/mode1_outputDir"
-    const pathParts = message.split('/');
-    console.log("pathParts :", pathParts)
-    const shapeOutputDir = pathParts[pathParts.length - 1]; // 提取最後一部分 "cutpaste_outputDir"
-
-    return shapeOutputDir;
+    return extractOutputFolder(response.data?.message);
     } catch (error) {
       throw new Error(`Failed to generate mode1 image: ${error.message}`);
     }
@@ -153,13 +144,7 @@ export const generateShapeMode2 = async (imageFile, maskFile, drawBboxes, tokenT
     );
 
       // 提取 Shape Mode1_outputDir
-      const message = response.data?.message;
-      // 假設 message 格式為 "Output images are saved in users/<user>/result/mode2_outputDir"
-      const pathParts = message.split('/');
-      console.log("pathParts :", pathParts)
-      const shapeOutputDir = pathParts[pathParts.length - 1]; // 提取最後一部分 "mode2_outputDir"
-
-    return shapeOutputDir; // 返回響應數據
+    return extractOutputFolder(response.data?.message);
   } catch (error) {
     throw new Error(`Failed to generate shape mode2: ${error.message}`);
   }
@@ -243,13 +228,7 @@ export const generateDiffusion = async (drawBboxes, uploadId, tokenType, accessT
       }
     );
     // 提取 diffusion_outputDir
-    const message = response.data?.message;
-    // 假設 message 格式為 "Output images are saved in users/<user>/result/diffusion_outputDir"
-    const pathParts = message.split('/');
-    console.log("pathParts :", pathParts)
-    const diffusionOutputDir = pathParts[pathParts.length - 1]; // 提取最後一部分 "diffusion_outputDir"
-
-    return diffusionOutputDir; // 返回響應數據
+    return extractOutputFolder(response.data?.message);
   } catch (error) {
     throw new Error(`Failed to generate diffusion: ${error.message}`);
   }

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref,reactive,computed} from 'vue';
-import jsYaml from 'js-yaml';
 import {getModelYaml} from '../api/index.js'
+import { applyDownloadedModelConfig } from './modelConfigMapping'
 
 export const useConfigData = defineStore('configData', () => {
     const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -122,22 +122,7 @@ export const useConfigData = defineStore('configData', () => {
         fetchConfigError.value = null;
         try {
           configData.value = await getModelYaml(fileName);
-          const modelName = fileName.split(".")[0]
-          const parsedConfig = jsYaml.load(configData.value); 
-        //   console.log("modelName :", modelName)
-          if(modelName == 'cutpaste'){
-            Object.assign(downloadModelConfig.cutPaste, parsedConfig);
-          }
-          else if(modelName == 'mode1'){
-            // downloadModelConfig['geometricShapes_1']=jsYaml.load(configData.value)
-            Object.assign(downloadModelConfig.geometricShapes_1, parsedConfig);
-          }
-          else if(modelName == 'mode2'){
-            downloadModelConfig['geometricShapes_2']=jsYaml.load(configData.value)
-          }
-          else if(modelName == 'anomalydiffusion'){
-            downloadModelConfig['anomalyDiffusion']=jsYaml.load(configData.value)
-          }
+          applyDownloadedModelConfig(downloadModelConfig, fileName, configData.value)
           console.log('downloadModelConfig  :',downloadModelConfig)
         } catch (err) {
             fetchConfigError.value = err.message;

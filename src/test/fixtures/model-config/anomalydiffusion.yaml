@@ -1,0 +1,10 @@
+output_dir: result/diffusion_fixture
+generation:
+  num_images: 1
+  params:
+    anomaly_diffusion:
+      sample_name: offline-sample
+      anomaly_name: offline-anomaly
+      adaptive_mask: true
+drawing_primitives:
+  - anomaly_diffusion

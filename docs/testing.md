@@ -2,19 +2,20 @@
 
 ## 1. 文件目的
 
-本文件定義 `defect_generator` 的驗證層次、offline-first原則、建議命令、測試缺口與真實整合gate。TASK-001已建立第一批可重現offline tests；它們只保護runtime config/auth routing，不代表整個產品已有充分coverage。
+本文件定義 `defect_generator` 的驗證層次、offline-first原則、建議命令、測試缺口與真實整合gate。TASK-001建立第一批runtime config/auth routing tests；TASK-003再補上API、YAML mapping、Canvas座標與Object URL lifecycle的characterisation evidence，但仍不代表完整UI或live integration coverage。
 
 ## 2. Current Test State
 
 - `package.json` 提供 type-check、build、Vitest、Cypress、ESLint 與 Prettier scripts。
 - 現有 Cypress `example.cy.ts` 是 template example，不涵蓋產品流程。
 - TASK-001新增3個test files、16個tests：runtime config 12、auth request 2、project runtime routing 2。
-- 未發現 API mock fixtures、YAML schemas、Canvas golden fixtures 或 coverage threshold。
+- TASK-003新增4個test files、33個tests：offline API contract 16、YAML mapping/round-trip 11、Canvas座標3、Object URL lifecycle 3；全套目前為7 files / 49 tests。
+- 已有4份synthetic YAML fixtures；仍未導入正式YAML schema、Canvas golden fixture或coverage threshold。
 - 未發現 CI workflow。
 - 2026-07-20以Node `v24.15.0`、npm `11.12.1`完成`npm ci`；package尚未宣告正式engine。
 - 未連線真實backend/GPU。
 
-Current confidence：public runtime config、OAuth不送client secret與testing-data隔離已有automated evidence；模型、YAML、Canvas、完整API與UI runtime仍缺測試。
+Current confidence：public runtime config、OAuth不送client secret、testing-data隔離、主要algorithm/result request shape、既有YAML mapping、Canvas座標換算與Object URL cleanup已有automated evidence；component/UI flow、錯誤恢復、正式schema與live backend/GPU仍缺測試。
 
 ## 3. Testing Principles
 
@@ -55,11 +56,15 @@ npm run build
 npm run test:unit -- --run
 ```
 
-Current TASK-001 tests：
+Current offline tests：
 
 - `src/config/__tests__/runtimeConfig.test.ts`
 - `src/stores/__tests__/auth.test.js`
 - `src/services/__tests__/HttpServiceCommunicator.test.js`
+- `src/api/__tests__/index.test.js`
+- `src/stores/__tests__/modelConfigMapping.test.js`
+- `src/utils/__tests__/canvasGeometry.test.ts`
+- `src/utils/__tests__/objectUrl.test.ts`
 
 優先測試：
 
@@ -232,6 +237,18 @@ Live backend/GPU tests 不應是一般 PR 的預設 job。
 - New declaration formatting：PASS；`src/types/legacy-vue-components.d.ts`通過Prettier check。既有SFC整檔Prettier drift不在本task擴張重寫。
 - Dependency audit：安裝時回報32個vulnerabilities（3 low、12 moderate、14 high、3 critical）；未執行`npm audit fix`或breaking upgrade。
 - Live integration / Cypress：not run by design；本task不觸發backend、OAuth、GPU或model flow。
+
+### TASK-003 offline API / YAML / Canvas characterisation baseline
+
+- 執行環境：Node `v24.15.0` / npm `11.12.1`，以既有lockfile完成`npm ci`。
+- Offline unit/contract tests：PASS；新增4 files / 33 tests，全套7 files / 49 tests PASS，Axios client完全mock，沒有真實HTTP request。
+- API coverage：config download/edit、四種generator request與既有`message` output-folder parsing、四種malformed response、upload image/mask ordering、result list/data、blob preview、download filename與fallback。
+- YAML coverage：四份synthetic fixtures、四模型既有store mapping、CutPaste missing-key merge、Mode 2 wrong-type現況、malformed YAML error與四份round-trip；這些是frontend characterisation，不是正式backend schema。
+- Canvas/Object URL coverage：display-to-bitmap normal/boundary/non-uniform scaling，以及create、replace-before-revoke與empty cleanup lifecycle。
+- Full type-check / production build：PASS；build仍只有既有Bootstrap Sass deprecation warnings。
+- Static checks：新增helpers/tests/fixtures的ESLint、Prettier與JS syntax PASS。大型legacy SFC目前與`HEAD`相同，均為20個既有lint errors；本task沒有新增lint finding。
+- Project harness：安裝dependencies時會因掃描ignored `node_modules`內第三方CRLF而FAIL；移出可重建`node_modules`/`dist`後重跑結果記錄於TASK-003 closure。此為既有harness observation，不是產品source drift。
+- Live integration / Cypress：not run by design；未觸發OAuth、backend、GPU、model load或真實資料。
 
 ## 10. Exit Criteria for Product Changes
 

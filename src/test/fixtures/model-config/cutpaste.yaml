@@ -1,0 +1,6 @@
+output_dir: result/cutpaste_fixture
+generation:
+  num_images: 1
+  random_seed: 7
+drawing_primitives:
+  - cutpaste_scar

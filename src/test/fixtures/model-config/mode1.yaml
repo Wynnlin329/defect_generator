@@ -1,0 +1,9 @@
+output_dir: result/mode1_fixture
+generation:
+  num_images: 1
+  params:
+    generate_background:
+      min_kernel_size: 16
+      max_kernel_size: 32
+drawing_primitives:
+  - draw_lines
