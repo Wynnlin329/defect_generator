@@ -17,6 +17,9 @@ const currentPage = ref(1)
 const rowsPerPage = ref(10)
 const visibleColumns = ref(props.headers.map((header) => header.key))
 
+const isGreaterThan = (left: unknown, right: unknown) =>
+  (left as string) > (right as string)
+
 // Watchers for resetting pagination
 watch(searchQuery, () => (currentPage.value = 1))
 watch(rowsPerPage, () => (currentPage.value = 1))
@@ -31,7 +34,9 @@ const filteredData = computed(() =>
     )
     .sort((a, b) => {
       if (!sortField.value || props.notSortableKeys?.includes(sortField.value)) return 0
-      return a[sortField.value] > b[sortField.value] ? sortOrder.value : -sortOrder.value
+      return isGreaterThan(a[sortField.value], b[sortField.value])
+        ? sortOrder.value
+        : -sortOrder.value
     }),
 )
 
@@ -60,10 +65,12 @@ const prevPage = () => currentPage.value > 1 && currentPage.value--
 const nextPage = () => currentPage.value < totalPages.value && currentPage.value++
 
 // Utility functions
-const highlightText = (text: string | number) => {
-  if (!searchQuery.value) return text
+const highlightText = (text: unknown) => {
+  if (!searchQuery.value) return text as string | number
   const regex = new RegExp(`(${searchQuery.value})`, 'gi')
-  return text.toString().replace(regex, `<span style="background-color: pink;">$1</span>`)
+  return (text as string | number)
+    .toString()
+    .replace(regex, `<span style="background-color: pink;">$1</span>`)
 }
 
 const reloadTable = () => {

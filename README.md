@@ -72,6 +72,8 @@ npm run type-check
 npm run build
 ```
 
+TASK-002 已建立可重現基線：`js-yaml` 為 browser runtime direct dependency，`sass-embedded` 為 Vite SCSS build direct dev dependency；在 Node `v24.15.0` / npm `11.12.1` 的 fresh `npm ci` 狀態下，完整 type-check 與 aggregate production build 均通過。Build 仍會顯示 Bootstrap SCSS 的 Sass deprecation warnings，屬非阻塞後續項目。
+
 ### Unit tests
 
 ```bash
@@ -135,7 +137,8 @@ bash scripts/project-check.sh --no-git
 - Primary domain 為 `web`，但 workspace 尚無正式 Web domain assets；本 project 使用 core-only fallback。
 - `DefectGeneratorPage.vue` 約 2,958 行，狀態、Canvas、API 與 UI 高度耦合。
 - API、YAML、Canvas 與 auth contract 尚缺 regression tests。
-- `js-yaml` 被 source 直接使用，但目前不是 root direct dependency。
-- Fresh `npm ci` 後 production build 仍缺少 Sass compiler direct dependency；全專案 type-check 也有既有 prototype/Vue 型別錯誤。
-- 2026-07-20 的 `npm ci` audit 回報 33 個 dependency vulnerabilities；尚未執行自動修復或 breaking upgrade。
+- TASK-002 已補齊 `js-yaml` 與 `sass-embedded` direct dependencies，fresh production build與完整type-check均通過。
+- Production build仍有Bootstrap SCSS的Sass deprecation warnings；不阻塞artifact產生，但應在後續dependency upgrade task追蹤。
+- 2026-07-20 的dependency install audit回報32個vulnerabilities（3 low、12 moderate、14 high、3 critical）；未執行自動修復或breaking upgrade。
+- 支援的Node/npm正式matrix尚未決定；TASK-002只記錄已驗證的Node `v24.15.0` / npm `11.12.1`。
 - Platform prototype pages 的正式產品範圍尚待確認。

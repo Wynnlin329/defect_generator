@@ -136,6 +136,7 @@ function showProjectCreateModal() {
           <div id="div-announcement-list" v-for="item in announcementDataList" :key="item.uuid">
             <AnnouncementItem
               class="announcement-item"
+              v-bind:uuid="item.uuid"
               v-bind:date_time="item.date_time"
               v-bind:message="item.message"
             ></AnnouncementItem>

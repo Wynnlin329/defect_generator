@@ -3,6 +3,17 @@ import { ref, computed } from 'vue'
 import { Modal } from 'bootstrap'
 import GenericTable from '@/components/BaseTable.vue'
 
+interface AdminRow {
+  no: number
+  account: string
+  name: string
+  role: string
+  permission: number
+  lastModification: string
+  modifiedBy: string
+  edit: string
+}
+
 // Dump data
 const adminHeaders = ref([
   { key: 'no', label: 'No.' },
@@ -15,7 +26,7 @@ const adminHeaders = ref([
   { key: 'edit', label: 'Edit' },
 ])
 
-const adminData = ref([
+const adminData = ref<AdminRow[]>([
   {
     no: 1,
     account: 'Sam_Ku@asus.com',
@@ -229,7 +240,7 @@ const adminData = ref([
 ])
 
 // Edit Modal
-const selectedRow = ref({
+const selectedRow = ref<AdminRow>({
   no: 0,
   account: '',
   name: '',
@@ -241,8 +252,8 @@ const selectedRow = ref({
 })
 
 let modalInstance: Modal | null = null
-const openEditModal = (row) => {
-  selectedRow.value = { ...row } // Clone row data to prevent direct modification
+const openEditModal = (row: Record<string, unknown>) => {
+  selectedRow.value = { ...(row as unknown as AdminRow) } // Clone row data to prevent direct modification
   console.log(selectedRow.value.permission)
   if (!modalInstance) {
     modalInstance = new Modal(document.getElementById('editModal') as HTMLElement)

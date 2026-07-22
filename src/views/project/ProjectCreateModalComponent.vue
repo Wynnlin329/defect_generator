@@ -31,9 +31,7 @@ const isClassificationHovered = ref<boolean>(false)
 const isAnomalyDetectionHovered = ref<boolean>(false)
 
 onMounted(() => {
-  modalInstance.value = new Modal(document.getElementById(prop.elementId), {
-    target: prop.elementId,
-  })
+  modalInstance.value = new Modal(document.getElementById(prop.elementId)!)
 
   emit('get-modal', modalInstance.value)
 })

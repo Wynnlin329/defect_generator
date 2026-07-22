@@ -119,7 +119,7 @@ TFIDG 在 UI/state 與實際 generator branch 的名稱與路徑尚有不一致�
 
 - `DefectGeneratorPage.vue` 約 2,958 行，UI、state、Canvas 與 API orchestration 高度耦合。
 - 已有 16 個 runtime-config/auth/routing offline tests；模型、YAML、Canvas 與完整 API contract coverage 仍不足，Cypress 仍是 template example。
-- `js-yaml` 被 source 直接 import，但尚未列為 root direct dependency。
+- `js-yaml` 已列為browser runtime direct dependency；`sass-embedded`已列為Vite SCSS build direct dev dependency。
 - Node/npm/browser 支援版本尚未正式宣告。
 - 三組 base URL 與 testing-data flag 已集中管理；正式 environment values 與 deployment injection 尚待確認。
 - API response、YAML schema、Canvas mapping 與 long-running job contract 尚缺自動化保護。

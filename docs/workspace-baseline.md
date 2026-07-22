@@ -99,7 +99,7 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 - Primary domain：`web`
 - Secondary capabilities：REST API、OAuth、AI model configuration、Canvas image processing、file upload/download、YAML、i18n、frontend testing
 - Domain selection rationale：主要交付物與高頻修改面是 browser UI、routing、state、Canvas interaction 與 API binding。
-- Task active capability：`TASK-001` frontend runtime configuration / auth and API integration；目前為Implemented、build/manual verification pending。
+- Task active capability：`TASK-002` frontend dependency / production build / type-check baseline；目前為Closed、Build/Tests Passed、Reviewed、Committed。
 - Imported core assets：core base、4 skills、6 templates、1 checklist、project harness、Codex/Claude adapters。
 - Imported domain assets：`not imported`
 - Imported domain MVP assets：`not available`
@@ -227,9 +227,9 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 - Copied asset existence：`PASS`；由 project harness 驗證。
 - Codex/Claude adapter parity：`PASS`；canonical skills 4、Codex adapters 4、Claude adapters 4。
 - Claude runtime verification：`UNKNOWN`。
-- Product unit tests：PASS；TASK-001 offline tests 3 files / 16 tests。
-- Product type-check：FAIL on既有app/prototype errors；TASK-001 targeted TypeScript PASS。
-- Product build：BLOCKED；fresh install缺少`sass-embedded` direct dependency。
+- Product unit tests：PASS；offline tests 3 files / 16 tests。
+- Product type-check：PASS；TASK-002已修正既有app/prototype errors，未放寬compiler設定。
+- Product build：PASS；fresh `npm ci`後`npm run build-only`與aggregate `npm run build`均通過。
 - Live backend/GPU validation：未執行，符合安全邊界。
 
 ## 十一、目前實際工作規則與對齊評估
@@ -238,4 +238,4 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 - 需求、bug、重構與驗證規則原則上先建立 `docs/tasks/TASK-xxx.md`，確認後才實作。
 - Copied core assets 是 project-local canonical；workspace pointers 只供查閱與升級比較。
 - Web domain assets unavailable 時維持 core-only fallback，不建立空 domain 目錄。
-- 目前對齊評估：project governance structure `PASS`；Claude runtime `UNKNOWN`；產品 build/test `NOT RUN`；production readiness `NOT ESTABLISHED`。
+- 目前對齊評估：project governance structure `PASS`；Claude runtime `UNKNOWN`；offline unit/type-check/production build baseline `PASS`；真實integration、deployment與production readiness `NOT ESTABLISHED`。

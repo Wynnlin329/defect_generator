@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ModalComponent from '../../components/dialog/DialogContainer.vue'
-import { AnnouncementItemData } from './AnnouncementItemData'
+import type { AnnouncementItemData } from './AnnouncementItemData'
 
 const properties = withDefaults(defineProps<AnnouncementItemData>(), {
   date_time: '0000/00/00 00:00',
   message: '',
 })
 
-const dialogShowMessage = ref(null)
+const dialogShowMessage = ref<InstanceType<typeof ModalComponent> | null>(null)
 
 function OnDownloadFileClicked() {
   console.log('doanload file')
@@ -23,7 +23,7 @@ function OnDownloadFileClicked() {
         id="btn-view-all"
         type="button"
         class="btn"
-        v-on:click="dialogShowMessage.showDialog()"
+        v-on:click="dialogShowMessage?.showDialog()"
       >
         View All →
       </button>
@@ -37,7 +37,12 @@ function OnDownloadFileClicked() {
     <div class="horizontal-divider"></div>
   </div>
 
-  <ModalComponent ref="dialogShowMessage" title="Announcement">
+  <ModalComponent
+    ref="dialogShowMessage"
+    title="Announcement"
+    message=""
+    :is-show-default-close-button="true"
+  >
     <div id="div-dialog-main">
       <div class="div-date-time">{{ properties.date_time }}</div>
       <span class="span-message-type">[SYSTEM]</span>

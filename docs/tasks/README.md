@@ -20,10 +20,7 @@ TASK-002-short-description.md
 
 ## 目前狀態
 
-Retrofit 不替使用者決定第一個產品 task，因此目前尚未建立 `TASK-001`。建議候選：
+- `TASK-001`：前端 Runtime Config 與 Credential 安全基線；`Implemented`，已於commit `e0a408c`提交，offline tests通過，full build/type-check與controlled OAuth integration另行處理。
+- `TASK-002`：Direct Dependencies、Fresh Production Build 與既有 Type-check Baseline；`Closed`，fresh install、type-check、production build與16個offline tests通過，已review並提交。
 
-- environment／credential／API config 安全基線；
-- offline unit/API contract test baseline；
-- TFIDG 與 model mapping contract 釐清。
-
-選定後應先產生 task 草稿並再次停下確認，不直接修改 `src/**`。
+新 task 建立後仍須停在 confirmation gate；使用者明確確認直接實作後，才可修改產品程式、dependency manifests或build設定。

@@ -5,21 +5,24 @@ import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
 
-const navigateTo = (section) => {
+type SystemSection = 'user' | 'admin' | 'announcement'
+
+const headerNames: Record<SystemSection, string> = {
+  user: 'User Accounts',
+  admin: 'Admin List',
+  announcement: 'Announcements',
+}
+
+const navigateTo = (section: SystemSection) => {
   router.push(`/system/${section}`)
 }
 
-const activeSection = computed(() => route.path.split('/')[2] || 'user')
+const activeSection = computed<SystemSection>(() => {
+  return (route.path.split('/')[2] || 'user') as SystemSection
+})
 
 // Define route-based header names
-const headerName = computed(() => {
-  const map = {
-    user: 'User Accounts',
-    admin: 'Admin List',
-    announcement: 'Announcements',
-  }
-  return map[activeSection.value] || 'User Accounts'
-})
+const headerName = computed(() => headerNames[activeSection.value] || 'User Accounts')
 </script>
 
 <template>

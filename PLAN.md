@@ -6,7 +6,7 @@
 
 ## Current State
 
-- Status：retrofit generation completed / project harness PASS
+- Status：retrofit generation completed / TASK-001 and TASK-002 completed
 - Primary domain：`web`
 - Domain assets：not available / not imported
 - Fallback：core assets only
@@ -28,7 +28,8 @@
 - [x] 建立 `.env.example` 與集中 runtime config。
 - [x] 移除 UI 預設 credential 與 browser-side client secret。
 - [ ] 確認 OAuth flow、token lifecycle 與 route protection。
-- [ ] 補齊 direct dependencies、Node/npm engine 與 non-mutating lint command。
+- [x] 已實作 `TASK-002`：補齊direct dependencies，fresh `npm ci`、完整type-check、production build與16個offline tests通過。
+- [ ] Node/npm engine與non-mutating lint command維持後續獨立工作，不混入TASK-002。
 - [ ] 確認 HTTP/TLS、CORS、browser 與 backend environment boundary。
 - 全部工作需另建 task，且不在未授權環境執行真實登入。
 
@@ -55,11 +56,10 @@
 
 ## 近期優先事項
 
-1. 處理 fresh build direct dependencies 與既有 type-check baseline。
-2. 由使用者確認 repo 正式 ownership 是完整 AISVision frontend 或 Defect Generator only。
-3. 建立 Phase 3 offline API/YAML/Canvas test baseline task。
-4. 確認 OAuth client contract、token lifecycle 與 route protection。
-5. 有測試保護後再規劃主頁面拆分。
+1. 由使用者確認 repo 正式 ownership 是完整 AISVision frontend 或 Defect Generator only。
+2. 建立 Phase 3 offline API/YAML/Canvas test baseline task。
+3. 確認 OAuth client contract、token lifecycle 與 route protection。
+4. 有測試保護後再規劃主頁面拆分。
 
 ## 待確認事項
 
@@ -71,4 +71,4 @@
 
 ## 建議下一步
 
-先建立 dependency/build/type-check baseline task，讓 fresh install 可完整執行 production build；再擴充 offline API/YAML/Canvas tests。
+下一個產品task可擴充offline API/YAML/Canvas tests，或獨立處理Node/npm engine、Sass warnings與dependency vulnerabilities。

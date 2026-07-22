@@ -128,7 +128,7 @@
 - Vue 3、Vue Router、Pinia、Vue I18n
 - Axios、Zod
 - Bootstrap
-- YAML parser/serializer（source 使用 `js-yaml`，但 direct dependency 尚未宣告）
+- YAML parser/serializer（source 使用的 `js-yaml` 已宣告為browser runtime direct dependency）
 
 ### Tooling
 
@@ -174,7 +174,7 @@ TASK-001 已建立 build-time Vite environment contract：
 1. 單一大型 SFC 是目前最高維護風險，但不可在無 tests 下直接大改。
 2. Runtime config已有typed boundary；API response/YAML contract仍缺少typed、versioned邊界。
 3. 登入預設值與browser-side secret已移除；OAuth lifecycle與roles仍有security risk。
-4. direct dependency 與實際 imports 不一致，fresh install 可靠性不足。
+4. TASK-002已對齊direct dependency與實際imports，並以fresh `npm ci`驗證type-check與production build；Node/npm正式matrix與Sass deprecation warnings仍待後續治理。
 5. Runtime config/auth routing已有16個offline tests，但整體test pyramid仍不足。
 6. prototype platform scope 與 production scope 未分離。
 

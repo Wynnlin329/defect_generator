@@ -218,6 +218,21 @@ Live backend/GPU tests 不應是一般 PR 的預設 job。
 - Dependency cleanup：驗證後未保留`node_modules`於repo；後續執行npm checks需重新`npm ci`。
 - Live integration：not run by design。
 
+### TASK-002 dependency/build/type-check baseline
+
+- 執行環境：Node `v24.15.0` / npm `11.12.1`。
+- Direct dependencies：PASS；`js-yaml@4.3.0`為runtime dependency，`sass-embedded@1.100.0`為dev dependency；source/config bare import盤點沒有其他missing direct dependency。
+- Fresh dependency install：PASS；移出既有`node_modules`與`dist`後，`npm ci`依lockfile安裝636 packages，manifest與lockfile SHA-1前後一致。
+- Dependency tree：`npm ls --depth=0` exit 0，direct dependencies無missing；npm 11列出Sass/Watcher的platform-specific optional packages為extraneous observation，不阻塞build。
+- Full project type-check：PASS；14個既有Vue/TypeScript errors已以局部types、props、nullability與兩個legacy JS SFC精確declarations修正，未改`tsconfig`或加入blanket ignores。
+- Production build：PASS；`npm run build-only`與aggregate `npm run build`均產生`dist`。
+- Build warnings：Bootstrap 5.3.3 SCSS在`sass-embedded` 1.100.0下產生`if-function` deprecation warnings，另有obsolete `mixed-decls` silence warning；目前為非阻塞後續dependency upgrade風險。
+- Unit tests：PASS；3 files / 16 tests。
+- Targeted ESLint：PASS；TASK-002修改的TypeScript/Vue檔案無lint error。
+- New declaration formatting：PASS；`src/types/legacy-vue-components.d.ts`通過Prettier check。既有SFC整檔Prettier drift不在本task擴張重寫。
+- Dependency audit：安裝時回報32個vulnerabilities（3 low、12 moderate、14 high、3 critical）；未執行`npm audit fix`或breaking upgrade。
+- Live integration / Cypress：not run by design；本task不觸發backend、OAuth、GPU或model flow。
+
 ## 10. Exit Criteria for Product Changes
 
 一份產品 task 可宣告完成前，至少要：
