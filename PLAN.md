@@ -6,10 +6,10 @@
 
 ## Current State
 
-- Status：retrofit generation completed / TASK-001 and TASK-002 completed
+- Status：retrofit completed / TASK-001至TASK-004 completed
 - Primary domain：`web`
-- Domain assets：not available / not imported
-- Fallback：core assets only
+- Domain assets：Web Stage 1 minimum active set imported
+- Fallback：core + imported Web assets；未導入／不可用能力使用core-only
 - Current product focus：Defect Generator
 - Platform prototype scope：待產品 owner 確認
 
@@ -20,6 +20,7 @@
 - [x] 建立 Codex / Claude project-native thin adapters。
 - [x] 建立 project harness。
 - [x] 建立 project entry、context、architecture、requirements、API、testing、baseline 文件。
+- [x] 依TASK-004導入Web Domain Stage 1 minimum active set並更新baseline。
 - [x] project harness 與 checklist 最終驗證；產品 runtime validation 仍待 dependencies 與 tests baseline。
 - [x] 已建立並實作 `TASK-001`「前端 Runtime Config 與 Credential 安全基線」；offline tests通過，build/type-check baseline阻塞已記錄。
 

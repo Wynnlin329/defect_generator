@@ -134,7 +134,7 @@ bash scripts/project-check.sh --no-git
 
 ## 已知限制
 
-- Primary domain 為 `web`，但 workspace 尚無正式 Web domain assets；本 project 使用 core-only fallback。
+- Primary domain 為 `web`；project已導入Web Domain Stage 1的base、requirement/feature skills與task/integration templates，其餘未導入或Later能力維持core-only fallback。
 - `DefectGeneratorPage.vue` 約 2,958 行，狀態、Canvas、API 與 UI 高度耦合。
 - API、YAML、Canvas 與 auth contract 尚缺 regression tests。
 - TASK-002 已補齊 `js-yaml` 與 `sass-embedded` direct dependencies，fresh production build與完整type-check均通過。

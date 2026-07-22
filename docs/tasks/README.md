@@ -23,5 +23,6 @@ TASK-002-short-description.md
 - `TASK-001`：前端 Runtime Config 與 Credential 安全基線；`Implemented`，已於commit `e0a408c`提交，offline tests通過，full build/type-check與controlled OAuth integration另行處理。
 - `TASK-002`：Direct Dependencies、Fresh Production Build 與既有 Type-check Baseline；`Closed`，fresh install、type-check、production build與16個offline tests通過，已review並提交。
 - `TASK-003`：Offline API、YAML 與 Canvas Characterisation Test Baseline；`Closed`，新增33個offline tests，全套49個tests、type-check、production build與project harness通過，已review並提交。
+- `TASK-004`：Web Domain Stage 1 MVP導入與Baseline更新；`Closed`，source parity、project harness、workspace validation與code review通過，已review並提交。
 
 新 task 建立後仍須停在 confirmation gate；使用者明確確認直接實作後，才可修改產品程式、dependency manifests或build設定。

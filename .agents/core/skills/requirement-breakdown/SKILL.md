@@ -18,6 +18,11 @@ description: 用於將模糊需求拆解為功能清單、子任務、驗收標�
 - `workspace/shared/domains/ios/base/DOMAIN_AGENTS.md`
 - `workspace/shared/domains/ios/skills/ios-requirement-breakdown/SKILL.md`
 
+若 primary domain 或 active domain = `web`，應讀取：
+
+- `workspace/shared/domains/web/base/DOMAIN_AGENTS.md`
+- `workspace/shared/domains/web/skills/web-requirement-breakdown/SKILL.md`
+
 ---
 
 ## 一、適用時機
@@ -78,6 +83,8 @@ description: 用於將模糊需求拆解為功能清單、子任務、驗收標�
 5. domain-specific project 文件
 
 若 primary domain / active domain = `ios`，應讀取 `ios-requirement-breakdown`，由該 skill 補充 iOS 專屬修改點定位、文件與風險。
+
+若 primary domain / active domain = `web`，應讀取 `web-requirement-breakdown`，由該 skill 補充 UI states、route / data boundary、security、accessibility、responsive 與 Web validation acceptance。
 
 一般 project task 仍應使用 project-local core assets 與 active domain assets：
 

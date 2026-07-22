@@ -19,12 +19,12 @@
 - Domain selection rationale：主要交付物與高頻修改面是 browser UI、routing、frontend state、Canvas interaction 與 API binding；backend 只作外部依賴。
 - Active domain for current work：依 task 決定，預設仍為 `web`。
 - Imported core assets：core base、4 個 core skills、6 個 core templates、task template compliance checklist、project harness。
-- Imported domain assets：`not imported`
-- Domain assets status：workspace `shared/domains/web/` 尚未正式存在。
-- Fallback behavior：`use core assets only`
+- Imported domain assets：Web domain base、`web-requirement-breakdown`、`web-feature-implementation`、`web-task-template.md`、`web-integration-checklist-template.md`。
+- Domain assets status：workspace Web Domain Stage 1 MVP 已正式存在；上述最小 active set 已導入 `.agents/domain/web/`。
+- Fallback behavior：Web tasks 使用 core + imported Web assets；未導入或尚不可用的能力維持 core-only fallback。
 - Project-specific overrides：保留既有 Vue/Vite/npm scripts 與 source layout；不因 retrofit 搬移產品程式。
 
-不得建立空的 `.agents/domain/web/` 假裝 Web domain assets 已導入，也不得使用 iOS assets 代替。
+只有 baseline 明列且實際存在於 `.agents/domain/web/` 的資產視為已導入；不得使用 iOS assets 代替未導入的 Web 能力。
 
 ## 三、Active Core Layers
 
@@ -51,8 +51,11 @@
 ### Domain Layer
 
 - Primary domain：`web`
-- Domain base / skills / templates：`not available` / `not imported`
-- 使用方式：只採 core-only fallback，project-specific Web 事實寫在本檔與 `docs/`。
+- Domain base：`.agents/domain/web/base/DOMAIN_AGENTS.md`
+- Domain skills：`.agents/domain/web/skills/web-requirement-breakdown/`、`.agents/domain/web/skills/web-feature-implementation/`
+- Domain templates：`.agents/domain/web/templates/web-task-template.md`、`.agents/domain/web/templates/web-integration-checklist-template.md`
+- 使用方式：Web task 先遵守 core workflow，再讀取 task 相符的 project-local Web companion；project-specific Web 事實仍以本檔與 `docs/` 為準。
+- Not imported：Web bootstrap／retrofit assets與Stage 1 Later能力。
 
 ### Project Override Layer
 
@@ -70,13 +73,13 @@
   5. `docs/workspace-baseline.md` 的 Workspace repo location
   6. 使用者提供的路徑
 - Workspace repo location：`/Users/aissens/Documents/workspace_git/workspace`
-- Workspace version / ref：`v1.16.0`
+- Workspace version / ref：`v1.16.0` / `bad7c60`（Web Domain Stage 1 MVP；workspace changelog `Unreleased`）
 - Prompt catalog：`docs/prompts/README.md`
 - Registry：`shared/registry.md`
 - Governance：`docs/governance/`
 - Guides：`docs/guides/`
 - Release notes：`RELEASE_NOTES/`
-- Last checked：`2026-07-20`
+- Last checked：`2026-07-22`
 
 以上只作 upstream pointer。Project 日常工作以本 repo 的 `AGENTS.md`、`.agents/`、`docs/`、`PLAN.md` 與程式碼現況為優先。
 
@@ -92,9 +95,11 @@
 8. `docs/architecture.md`
 9. `docs/api-contract.md`
 10. `docs/testing.md`
-11. 與任務相符的 `.agents/skills/<name>/SKILL.md`，再完整讀取其指向的 project-local canonical skill
-12. `docs/tasks/TASK-xxx.md`（若任務已有 task）
-13. 直接相關的程式碼、設定與測試
+11. `.agents/domain/web/base/DOMAIN_AGENTS.md`（active domain = `web` 時）
+12. 與任務相符的 `.agents/skills/<name>/SKILL.md`，再完整讀取其指向的 project-local canonical skill
+13. 與任務相符的 `.agents/domain/web/skills/<name>/SKILL.md`（若已導入）
+14. `docs/tasks/TASK-xxx.md`（若任務已有 task）
+15. 直接相關的程式碼、設定與測試
 
 若任務涉及 workspace shared/core/domain 本身，切回 workspace repo，不在本 project 直接修改上游 assets。
 
@@ -202,7 +207,8 @@
 
 ## 九、技能路由
 
-- 需求拆解／task → `requirement-breakdown`
+- 需求拆解／task → core `requirement-breakdown` + Web `web-requirement-breakdown`
+- 已確認 Web feature 實作 → `web-feature-implementation`
 - 程式碼 review → `code-review`
 - 測試案例與回歸矩陣 → `test-case-generation`
 - 技術文件、架構、交接 → `technical-documentation`
@@ -243,7 +249,7 @@ npm run test:unit -- --run
 1. 不跳過 task confirmation-stop。
 2. 不直接修改 workspace shared/core/domain。
 3. 不把 Web／backend／AI project-specific 細節寫進 copied core assets。
-4. 不以 iOS assets 代替 unavailable Web domain。
+4. 不以 iOS assets 代替未導入或尚不可用的 Web domain 能力。
 5. 不在沒有 tests 與 contract evidence 時大規模重寫主頁面。
 6. 不以 prototype、註解或 hard-coded value 當成已確認產品規格。
 7. 不在未授權環境執行真實登入、模型載入、生成、下載或 deployment。

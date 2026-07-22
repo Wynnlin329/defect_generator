@@ -123,7 +123,7 @@ TFIDG 在 UI/state 與實際 generator branch 的名稱與路徑尚有不一致�
 - Node/npm/browser 支援版本尚未正式宣告。
 - 三組 base URL 與 testing-data flag 已集中管理；正式 environment values 與 deployment injection 尚待確認。
 - API response、YAML schema、Canvas mapping 與 long-running job contract 尚缺自動化保護。
-- Workspace 尚無正式 Web domain assets，因此使用 core-only fallback。
+- Project已導入Workspace Web Domain Stage 1 minimum active set；未導入或尚不可用的Web能力維持core-only fallback。
 
 ## 9. Security and Data Boundary
 
