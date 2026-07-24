@@ -131,7 +131,7 @@ function showProjectCreateModal() {
 
       <div class="div-top-area-column-3">
         <div id="div-announcement" class="aisv-card">
-          <h5>Announcement</h5>
+          <h5 class="text-center text-danger">Announcement</h5>
 
           <div id="div-announcement-list" v-for="item in announcementDataList" :key="item.uuid">
             <AnnouncementItem
@@ -182,7 +182,7 @@ function showProjectCreateModal() {
       <div id="div-no-recently-project" v-if="projectDataList.length == 0">
         <div class="d-flex justify-content-center h-100">
           <div class="align-self-center text-center">
-            <button class="btn btn-primary mb-2" type="button" @click="showProjectCreateModal">
+            <button class="btn btn-danger mb-2" type="button" @click="showProjectCreateModal">
               <span class="d-flex">
                 <svg
                   class="align-self-center me-1"
