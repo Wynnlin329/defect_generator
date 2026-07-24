@@ -2,17 +2,18 @@
 
 ## 文件目的
 
-本文件記錄 `defect_generator` 實際採用的 workspace baseline、copied assets、reference-only pointers、未導入項目、domain mapping 與 project-local overrides。它描述 2026-07-20 retrofit及2026-07-22 Web Domain Stage 1 project-local upgrade後的現況，不代表未來 workspace 更新會自動同步到本 project。
+本文件記錄 `defect_generator` 實際採用的 workspace baseline、copied assets、reference-only pointers、未導入項目、domain mapping 與 project-local overrides。它描述2026-07-20 retrofit及TASK-004、TASK-005、TASK-007 Web project-local upgrades後的現況，不代表未來workspace更新會自動同步到本project。
 
 ## 一、目前 Baseline
 
-- Workspace version：`v1.16.0`
-- Workspace 版本：`v1.16.0`
+- Workspace version：`v1.17.0`
+- Workspace 版本：`v1.17.0`
 - Workspace repo location：`/Users/aissens/Documents/workspace_git/workspace`
-- Workspace commit / ref：`bad7c60`
+- Workspace commit / ref：`280a1c1`
 - 初次導入日期：`2026-07-20`
-- 最近升級日期：`2026-07-22`
-- 導入人員：Codex，依使用者確認的 retrofit proposal 與 TASK-004 執行
+- 最近升級日期：`2026-07-24`
+- 最近baseline更新日期：`2026-07-24`
+- 導入人員：Codex，依使用者確認的retrofit proposal與TASK-004、TASK-005、TASK-007執行
 - 導入方式：`retrofit` + `project-local upgrade`
 - Project 類型：Vue 3 Web SPA / AI 瑕疵影像生成前端
 
@@ -30,9 +31,9 @@ Workspace repo lookup order：
 ### 1. Canonical workspace pointers
 
 - Workspace repo location：`/Users/aissens/Documents/workspace_git/workspace`
-- Workspace version：`v1.16.0`
-- Workspace commit / ref：`bad7c60`
-- Workspace source state：Web Domain Stage 1 MVP；workspace changelog `Unreleased`
+- Workspace version：`v1.17.0`
+- Workspace commit / ref：`280a1c1`
+- Workspace source state：正式release `v1.17.0` foundation + workspace changelog `Unreleased` Web Stage 2 browser verification與Optional visual reference mapping
 - Project harness version：`1.2.0`
 - Codex native adapters：`adopted`
 - Codex adapter canonical root：`.agents/core/skills/`
@@ -51,7 +52,7 @@ Workspace repo lookup order：
 - Examples path：`docs/examples/`
 - Access mode：`partially copied`
 - Pointer health：`reachable`
-- Last checked：`2026-07-22`
+- Last checked：`2026-07-24`
 - Notes：上游 pointers 只供查閱；日常工作以 project-local assets 為準。
 
 ### 2. Copied assets
@@ -82,6 +83,13 @@ Workspace repo lookup order：
 | `shared/domains/web/skills/web-feature-implementation/SKILL.md` | `.agents/domain/web/skills/web-feature-implementation/SKILL.md` | Web domain skill | copied |
 | `shared/domains/web/templates/web-task-template.md` | `.agents/domain/web/templates/web-task-template.md` | Web domain template | copied |
 | `shared/domains/web/templates/web-integration-checklist-template.md` | `.agents/domain/web/templates/web-integration-checklist-template.md` | Web domain template | copied |
+| `shared/domains/web/skills/web-browser-verification/SKILL.md` | `.agents/domain/web/skills/web-browser-verification/SKILL.md` | Web Stage 2 required skill | copied |
+| `shared/domains/web/templates/web-browser-verification-report-template.md` | `.agents/domain/web/templates/web-browser-verification-report-template.md` | Web Stage 2 required template | copied |
+| `shared/domains/web/checklists/web-browser-verification-checklist.md` | `.agents/domain/web/checklists/web-browser-verification-checklist.md` | Web Stage 2 required checklist | copied |
+| `shared/domains/web/skills/web-visual-reference-mapping/SKILL.md` | `.agents/domain/web/skills/web-visual-reference-mapping/SKILL.md` | Web optional visual mapping skill | copied |
+| `shared/domains/web/templates/web-visual-reference-mapping-report-template.md` | `.agents/domain/web/templates/web-visual-reference-mapping-report-template.md` | Web optional visual mapping template | copied |
+| `shared/domains/web/checklists/web-visual-reference-mapping-checklist.md` | `.agents/domain/web/checklists/web-visual-reference-mapping-checklist.md` | Web optional visual mapping checklist | copied |
+| `shared/domains/web/skills/web-runtime-diagnostics/SKILL.md` | `.agents/domain/web/skills/web-runtime-diagnostics/SKILL.md` | Web Stage 2 optional diagnostics | not imported |
 | `shared/core/skills/release-readiness-check/SKILL.md` | `.agents/core/skills/release-readiness-check/SKILL.md` | later core skill | not imported |
 | `shared/core/skills/presentation-packaging/SKILL.md` | `.agents/core/skills/presentation-packaging/SKILL.md` | later core skill | not imported |
 | `shared/core/templates/agent-delegation-template.md` | `.agents/core/templates/agent-delegation-template.md` | delegation workflow | not imported |
@@ -105,27 +113,28 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 | `docs/guides/` | flow guidance | `reference-only` | none | 2026-07-20 | pointer-only |
 | `RELEASE_NOTES/` | release history | `reference-only` | none | 2026-07-20 | pointer-only |
 | `docs/examples/` | non-formal examples | `reference-only` | none | 2026-07-20 | not imported |
-| `shared/domains/web/README.md` | Web Stage 1 index / boundary | `reference-only` | none | 2026-07-22 | pointer-only |
+| `shared/domains/web/README.md` | Web Stage 1 / Stage 2 / Optional visual mapping boundary | `reference-only` | none | 2026-07-24 | pointer-only |
 
 ## 三、Domain Mapping
 
 - Primary domain：`web`
 - Secondary capabilities：REST API、OAuth、AI model configuration、Canvas image processing、file upload/download、YAML、i18n、frontend testing
 - Domain selection rationale：主要交付物與高頻修改面是 browser UI、routing、state、Canvas interaction 與 API binding。
-- Task active capability：`TASK-004` Web Domain Stage 1 project-local adoption與baseline對齊；目前為Closed、Tests Passed、Reviewed、Committed。
+- Task active capability：`TASK-007` Web visual reference mapping project-local adoption；目前為Closed、Tests Passed、Reviewed、Committed。
 - Imported core assets：core base、4 skills、6 templates、1 checklist、project harness、Codex/Claude adapters。
-- Imported domain assets：Web domain base、2個skills、2個templates。
-- Imported domain MVP assets：`DOMAIN_AGENTS.md`、`web-requirement-breakdown`、`web-feature-implementation`、`web-task-template.md`、`web-integration-checklist-template.md`。
-- Unavailable domain assets：none for Stage 1 formal set；Later capabilities尚未建立。
-- Later domain assets not imported：release/readiness、performance、E2E/browser matrix、SSR/PWA、native adapters與domain harness。
-- Active domain assets in project：5個Web minimum active assets。
+- Imported domain assets：Web domain base、4個skills、4個templates、2個checklists。
+- Imported domain MVP assets：Stage 1 minimum active set + Stage 2 required set + Optional visual reference mapping三件組。
+- Available but not imported：optional `web-runtime-diagnostics`。
+- Unavailable domain assets：none for the approved active set。
+- Later domain assets not imported：release/readiness、performance、E2E/visual regression/browser matrix、SSR/PWA、native adapters與domain harness。
+- Active domain assets in project：11個Web assets。
 - Domain assets path：`.agents/domain/web/`。
 - Domain assets status：`available / partially imported`
 - Fallback behavior：Web tasks使用core + imported Web assets；未導入／不可用能力維持core-only。
 - Project-specific overrides：保留既有 Vue/Vite/npm scripts 與 source layout。
 - Project-local overrides：`AGENTS.md`、`PLAN.md` 與 `docs/` 記錄 Web/API/Canvas/GPU 專案事實。
 - Workspace feedback reports：none。
-- Domain upgrade history：2026-07-22依TASK-004從workspace ref `bad7c60`導入Web Stage 1最小active set。
+- Domain upgrade history：2026-07-22 TASK-004導入Web Stage 1最小active set；2026-07-23 TASK-005從ref `fda3769`導入Stage 2 required browser verification set；2026-07-24 TASK-007從ref `280a1c1`導入Optional visual reference mapping並同步active companions。
 
 未列於copied assets的Web資產不得視為已導入，也不以iOS domain assets代替。
 
@@ -139,16 +148,16 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 - Secondary capabilities：auth、REST、AI model orchestration、Canvas、YAML、download。
 - Repo-level domains observed：Web frontend、backend API client、AI workflow integration。
 - Imported core assets：confirmed minimal core set。
-- Imported domain assets：Web base、requirement/feature skills、task/integration templates。
-- Imported domain MVP assets：5個minimum active assets。
-- Domain assets unavailable：無Stage 1 active asset缺口；Later能力尚不可用。
-- Later domain assets not imported：release/readiness、performance、E2E/browser matrix、SSR/PWA與native discovery相關能力。
+- Imported domain assets：Web base、requirement/feature/browser-verification/visual-mapping skills、task/integration/browser-report/mapping-report templates與兩個checklists。
+- Imported domain MVP assets：Stage 1 minimum active set + Stage 2 required set + Optional visual mapping set，共11個assets。
+- Domain assets unavailable：approved active set無缺口；runtime diagnostics available但未匯入。
+- Later domain assets not imported：release/readiness、performance、E2E/visual regression/browser matrix、SSR/PWA與native discovery相關能力。
 - Fallback behavior：core + imported Web assets；其餘能力core-only。
 - Excluded domains：`ios`、`backend`。
 - Exclusion rationale：本 repo 不交付 iOS app 或 backend service；API/GPU 是外部依賴。
-- Future domain candidates：backend；只有project ownership改變或正式domain建立後才另行評估。
+- Future domain candidates：none；Backend已是formal domain但非本repo交付範圍。
 - Workspace feedback reports：none。
-- Domain upgrade history：TASK-004 Web Domain Stage 1 minimum active set adoption。
+- Domain upgrade history：TASK-004 Stage 1 adoption；TASK-005 Stage 2 required browser verification adoption；TASK-007 Optional visual reference mapping adoption。
 
 ## 五、Core Assets 導入範圍
 
@@ -208,7 +217,7 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 - [x] `docs/testing.md`
 - [x] `docs/tasks/`
 - [x] `docs/workspace-baseline.md`
-- [x] `.agents/domain/web/` — 已導入base、2個active skills與2個active templates。
+- [x] `.agents/domain/web/` — 已導入base、4個active skills、4個active templates與2個active checklists。
 
 ## 七、Project-local Overrides
 
@@ -220,9 +229,12 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 ## 八、Not imported
 
 - Web bootstrap／retrofit skills、proposal templates與checklists：initial adoption流程已完成，本次不匯入。
-- Web Stage 1 Later assets：workspace尚未建立，維持not available / not imported。
+- Optional `web-runtime-diagnostics`：workspace available / project not imported；目前沒有bounded diagnostic question或permission need。
+- Web Later assets：release/readiness、performance、E2E/visual regression/browser matrix、SSR/PWA、native adapters與domain harness尚未建立或未導入。
+- v1.17.0 core base新增的Domain Opportunity Check只屬bootstrap／retrofit；本project已完成初次導入，因此保留既有snapshot。
+- v1.17.0 core `requirement-breakdown`新增Backend routing；本project不交付Backend，因此保留既有snapshot。
 - iOS domain assets：domain 不相符。
-- Backend domain assets：backend 非本 repo 交付物，且 upstream 非正式 domain。
+- Backend domain assets：workspace已正式提供，但backend不是本repo交付物，因此不匯入。
 - Release/presentation skills：目前沒有對應 active workflow。
 - ADO/PR/DevOps templates：外部流程未確認。
 - Delegation template：本次未採用。
@@ -237,9 +249,10 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 
 ## 十、Validation Status
 
-- Project harness：`PASS`；`bash scripts/project-check.sh --no-git` 與 `bash scripts/project-check.sh` 均通過（version `1.2.0` / format `1`）。
+- Project harness：`PASS`；安裝中的dependencies暫時移出project scan後，`bash scripts/project-check.sh --no-git`與`bash scripts/project-check.sh`均通過（version `1.2.0` / format `1`），隨後已恢復`node_modules`。
 - Copied asset existence：`PASS`；由 project harness 驗證。
-- Web copied asset source parity：`PASS`；5個Web assets與同步後core `requirement-breakdown`均與workspace ref `bad7c60`來源一致。
+- Web copied asset source parity：`PASS`；11個imported assets均與workspace ref `280a1c1`逐檔一致。
+- Retained core snapshot review：`PASS`；v1.17.0 core base與requirement差異只影響初次bootstrap／retrofit及Backend routing，本project active workflow不需同步。
 - Workspace validation：`PASS`；既有`.DS_Store`與backend/library suspected-link warnings不阻斷且與本次project upgrade無關。
 - Codex/Claude adapter parity：`PASS`；canonical skills 4、Codex adapters 4、Claude adapters 4。
 - Claude runtime verification：`UNKNOWN`。
@@ -253,5 +266,5 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 - 日常入口：`AGENTS.md`；Claude Code 透過 `CLAUDE.md` relative import 載入同一入口。
 - 需求、bug、重構與驗證規則原則上先建立 `docs/tasks/TASK-xxx.md`，確認後才實作。
 - Copied core assets 是 project-local canonical；workspace pointers 只供查閱與升級比較。
-- Web task使用已導入的domain base、requirement/feature skills與task/integration templates；未導入／不可用能力維持core-only fallback。
-- 目前對齊評估：Web Stage 1 minimum active set已對齊workspace ref `bad7c60`；project governance structure與source parity `PASS`；Claude runtime `UNKNOWN`；既有offline unit/type-check/production build baseline `PASS`；真實integration、deployment與production readiness `NOT ESTABLISHED`。
+- Web task使用已導入的domain base、requirement/feature skills與task/integration templates；visual input關係由`web-visual-reference-mapping`整理，實際browser複驗由`web-browser-verification`產出report-only evidence；runtime diagnostics未導入。
+- 目前對齊評估：正式baseline為`v1.17.0`，project adoption ref為`280a1c1`的Unreleased Web Stage 2與Optional visual mapping；project governance與11個Web assets source parity `PASS`；Claude runtime `UNKNOWN`；既有offline unit/type-check/production build baseline `PASS`；真實mapping、browser、integration、deployment與production readiness不因本次治理升級自動成立。

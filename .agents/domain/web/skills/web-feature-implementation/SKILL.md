@@ -12,13 +12,13 @@
 
 ## 執行步驟
 
-1. 讀取 task、Web domain base、相關 architecture / requirement，以及依 `web-integration-checklist-template.md` 建立的 integration checklist。
+1. 讀取 task、Web domain base、相關 architecture / requirement、已確認的 `web-visual-reference-mapping` report（若適用），以及依 `web-integration-checklist-template.md` 建立的 integration checklist。
 2. 依 repo evidence 定位 route、page / component、state、API、style / asset、config 與 test 入口。
 3. 先確認既有 loading、empty、error、validation、permission 與 responsive behavior，避免破壞隱含 contract。
 4. 以達成 task 的最小 coherent change 實作；不得順手遷移 framework、重寫 routing / state 或更換 build tool。
 5. 檢查 browser security boundary：untrusted input、DOM output、URL、public config、auth / storage、cross-origin request 與敏感 logging。
 6. 檢查 accessibility：semantic structure、keyboard、focus、name / role / state、status / error feedback 與支援 viewport。
-7. 依 project 已宣告能力執行 affected checks、type-check / lint、tests、production-equivalent build、browser / manual checks 與 project harness。若 project 已導入 `web-browser-verification`，把實際 route / state / viewport 複驗交由該 report-only skill；一般 evidence 無法解釋症狀時才選配 `web-runtime-diagnostics`。
+7. 依 project 已宣告能力執行 affected checks、type-check / lint、tests、production-equivalent build、browser / manual checks 與 project harness。若 task 由 visual mapping 驅動，只消費已確認的 delta、acceptance 與 source hints，不把 hint 當成 root cause；若 project 已導入 `web-browser-verification`，把實際 route / state / viewport 複驗交由該 report-only skill；一般 evidence 無法解釋症狀時才選配 `web-runtime-diagnostics`。
 8. 將未執行項目、失敗 baseline、environment limitation 與 residual risk 明確記錄，不放大驗證結論。
 9. 更新 task、必要文件與 integration checklist；若發現可跨 project 的 shared 缺口，另記 WGAP，不直接修改 workspace。
 

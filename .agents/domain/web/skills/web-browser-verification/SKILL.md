@@ -1,6 +1,6 @@
 ---
 name: web-browser-verification
-description: Verify an actual rendered Web route, interaction, UI state, responsive behavior, or browser-visible regression and produce evidence without changing code. Use after an authorized Web implementation, when reproducing a visible browser issue, or when annotations, screenshots, Appshots, or reference images need to be mapped to reproducible browser checks.
+description: Verify an actual rendered Web route, interaction, UI state, responsive behavior, or browser-visible regression and produce evidence without changing code. Use after an authorized Web implementation, when reproducing a visible browser issue, or when a visual-reference mapping needs actual Browser re-verification.
 ---
 
 # Web Browser Verification
@@ -18,6 +18,7 @@ Use `web-browser-verification-report-template.md` for the report and `web-browse
 3. Record the requested route / flow, applicable UI states, requested viewport / input mode, authentication and data boundary, and expected outcome.
 4. Treat browser annotations, screenshots, Appshots, or equivalent window snapshots as context inputs. Do not treat them as proof of DOM state, interaction behavior, or successful re-verification.
 5. Require a separate confirmed task or explicit fix instruction before handing off any code change. Annotation presence alone is not modification authority.
+6. When Current / Target / Annotated relationships are material, consume an existing `web-visual-reference-mapping` report or hand off mapping first; do not duplicate its source-identity or asset-disposition workflow.
 
 ## Capability Preflight
 
@@ -52,7 +53,7 @@ Produce:
 - authorization and capability used;
 - requested and actual route / state / viewport / input conditions;
 - per-check `PASS` / `FAIL` / `NOT RUN` / `UNKNOWN` results;
-- annotation or visual-input mapping, when provided;
+- visual mapping report reference and reproduced conditions, when provided;
 - observed evidence, limitations, and residual risk;
 - recommended handoff without performing the change.
 

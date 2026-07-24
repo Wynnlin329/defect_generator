@@ -13,10 +13,10 @@
 - 最後更新日期：`2026-07-23`
 - 任務負責人：Codex
 - 優先級：Low
-- Task status：`Implemented`
+- Task status：`Closed`
 - Verification status：`Manual Passed`
-- Review status：`Pending Review`
-- Repo status：`Uncommitted`
+- Review status：`Reviewed`
+- Repo status：`Committed`
 
 ### 1.1 Status Rules
 
@@ -243,7 +243,7 @@
 ### 17.4 風險、後續與回補
 
 - 剩餘風險：Unreleased TASK-005 governance變更仍與本task同處working tree但未混入產品修改；TASK-006本身只剩user visual review與未執行的跨browser/viewport範圍。
-- 人工覆核需求：視覺結果待使用者review。
+- 人工覆核需求：使用者已確認依序完成與提交；其他browser／viewport仍不在本task驗證範圍。
 - 後續task：目前無。
 - 是否發現shared/core/domain缺口：否。
 - 是否需建立WGAP：否。
@@ -251,14 +251,14 @@
 
 ### 17.5 Closure Decision
 
-- Final Task status：`Implemented`
+- Final Task status：`Closed`
 - Final Verification status：`Manual Passed`
-- Final Review status：`Pending Review`
-- Final Repo status：`Uncommitted`
-- [ ] 可關閉
-- [x] 有條件關閉，需列出條件
+- Final Review status：`Reviewed`
+- Final Repo status：`Committed`
+- [x] 可關閉
+- [ ] 有條件關閉，需列出條件
 - [ ] 不可關閉，需完成實作與驗證
-- 結論：實作與自動/瀏覽器驗證完成；待使用者視覺review與後續commit後可關閉。
+- 結論：實作、自動／既有瀏覽器驗證、使用者確認與commit均已完成，任務關閉。
 
 ## 十八、執行紀錄
 

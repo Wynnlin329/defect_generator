@@ -43,6 +43,18 @@
 - explicitly out of scope:
 - rollback / fallback:
 
+## Visual Reference Mapping（若適用）
+
+- mapping report:
+- Current / Target / Annotated input IDs:
+- comparison mode: exact-condition / responsive-intent / semantic-only
+- confirmed mapping IDs and deltas:
+- source hints（not confirmed root cause）:
+- asset disposition:
+- original / external / derived reference:
+- unavailable original and supplement path:
+- unresolved visual intent:
+
 ## Web Validation Plan
 
 - affected static checks:
@@ -52,6 +64,7 @@
 - browser / route checks:
 - requested and actual route / state / viewport matrix:
 - browser verification evidence owner:
+- visual mapping → implementation → Browser re-verification handoff:
 - bounded runtime diagnostic question / permission gate:
 - keyboard / focus / responsive manual checks:
 - unavailable checks and residual risk:

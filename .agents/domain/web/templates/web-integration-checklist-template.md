@@ -8,6 +8,8 @@
 - browser / viewport / deployment assumptions:
 - requested / actual route, state, viewport and input conditions:
 - annotation / screenshot / Appshot IDs（context only）:
+- visual mapping report / mapping IDs:
+- visual asset disposition:
 
 ## UI and State
 
@@ -46,6 +48,8 @@
 - build:
 - browser / manual checks:
 - browser verification report and PASS / FAIL / NOT RUN / UNKNOWN matrix:
+- visual mapping matrix and MAPPED / PARTIAL / UNMAPPED / UNKNOWN results（not Browser status）:
+- original / external / derived visual reference handling:
 - runtime diagnostic observation / inference（若適用）:
 - project harness:
 - UNKNOWN / residual risks:

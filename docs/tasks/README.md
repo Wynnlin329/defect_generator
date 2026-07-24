@@ -24,5 +24,8 @@ TASK-002-short-description.md
 - `TASK-002`：Direct Dependencies、Fresh Production Build 與既有 Type-check Baseline；`Closed`，fresh install、type-check、production build與16個offline tests通過，已review並提交。
 - `TASK-003`：Offline API、YAML 與 Canvas Characterisation Test Baseline；`Closed`，新增33個offline tests，全套49個tests、type-check、production build與project harness通過，已review並提交。
 - `TASK-004`：Web Domain Stage 1 MVP導入與Baseline更新；`Closed`，source parity、project harness、workspace validation與code review通過，已review並提交。
+- `TASK-005`：Web Stage 2 Browser Verification導入；`Closed`，Unreleased ref `fda3769` required asset set、source parity與project/workspace validation均通過，已review並提交。
+- `TASK-006`：Home註解樣式調整；`Closed`，type-check/build/49 tests與既有same-condition browser verification通過，已review並提交。
+- `TASK-007`：Web Visual Reference Mapping導入；`Closed`，11/11 source parity、project/workspace validation與code review通過，已review並提交。
 
 新 task 建立後仍須停在 confirmation gate；使用者明確確認直接實作後，才可修改產品程式、dependency manifests或build設定。

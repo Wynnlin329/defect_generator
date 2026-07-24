@@ -19,8 +19,8 @@
 - Domain selection rationale：主要交付物與高頻修改面是 browser UI、routing、frontend state、Canvas interaction 與 API binding；backend 只作外部依賴。
 - Active domain for current work：依 task 決定，預設仍為 `web`。
 - Imported core assets：core base、4 個 core skills、6 個 core templates、task template compliance checklist、project harness。
-- Imported domain assets：Web domain base、`web-requirement-breakdown`、`web-feature-implementation`、`web-task-template.md`、`web-integration-checklist-template.md`。
-- Domain assets status：workspace Web Domain Stage 1 MVP 已正式存在；上述最小 active set 已導入 `.agents/domain/web/`。
+- Imported domain assets：Web domain base、`web-requirement-breakdown`、`web-feature-implementation`、`web-browser-verification`、`web-visual-reference-mapping`、`web-task-template.md`、`web-integration-checklist-template.md`、browser/visual mapping report templates與checklists。
+- Domain assets status：workspace Web Stage 1 foundation、Stage 2 browser verification與Optional visual reference mapping已存在；上述Stage 1 active set、Stage 2 required set與visual mapping三件組已導入`.agents/domain/web/`。
 - Fallback behavior：Web tasks 使用 core + imported Web assets；未導入或尚不可用的能力維持 core-only fallback。
 - Project-specific overrides：保留既有 Vue/Vite/npm scripts 與 source layout；不因 retrofit 搬移產品程式。
 
@@ -52,10 +52,11 @@
 
 - Primary domain：`web`
 - Domain base：`.agents/domain/web/base/DOMAIN_AGENTS.md`
-- Domain skills：`.agents/domain/web/skills/web-requirement-breakdown/`、`.agents/domain/web/skills/web-feature-implementation/`
-- Domain templates：`.agents/domain/web/templates/web-task-template.md`、`.agents/domain/web/templates/web-integration-checklist-template.md`
+- Domain skills：`.agents/domain/web/skills/web-requirement-breakdown/`、`.agents/domain/web/skills/web-feature-implementation/`、`.agents/domain/web/skills/web-browser-verification/`、`.agents/domain/web/skills/web-visual-reference-mapping/`
+- Domain templates：`.agents/domain/web/templates/web-task-template.md`、`.agents/domain/web/templates/web-integration-checklist-template.md`、`.agents/domain/web/templates/web-browser-verification-report-template.md`、`.agents/domain/web/templates/web-visual-reference-mapping-report-template.md`
+- Domain checklists：`.agents/domain/web/checklists/web-browser-verification-checklist.md`、`.agents/domain/web/checklists/web-visual-reference-mapping-checklist.md`
 - 使用方式：Web task 先遵守 core workflow，再讀取 task 相符的 project-local Web companion；project-specific Web 事實仍以本檔與 `docs/` 為準。
-- Not imported：Web bootstrap／retrofit assets與Stage 1 Later能力。
+- Not imported：Web bootstrap／retrofit assets、optional `web-runtime-diagnostics`與其他Later能力。
 
 ### Project Override Layer
 
@@ -73,13 +74,13 @@
   5. `docs/workspace-baseline.md` 的 Workspace repo location
   6. 使用者提供的路徑
 - Workspace repo location：`/Users/aissens/Documents/workspace_git/workspace`
-- Workspace version / ref：`v1.16.0` / `bad7c60`（Web Domain Stage 1 MVP；workspace changelog `Unreleased`）
+- Workspace version / ref：`v1.17.0` / `280a1c1`（正式release foundation + `Unreleased` Web Stage 2與Optional visual mapping）
 - Prompt catalog：`docs/prompts/README.md`
 - Registry：`shared/registry.md`
 - Governance：`docs/governance/`
 - Guides：`docs/guides/`
 - Release notes：`RELEASE_NOTES/`
-- Last checked：`2026-07-22`
+- Last checked：`2026-07-24`
 
 以上只作 upstream pointer。Project 日常工作以本 repo 的 `AGENTS.md`、`.agents/`、`docs/`、`PLAN.md` 與程式碼現況為優先。
 
@@ -208,7 +209,10 @@
 ## 九、技能路由
 
 - 需求拆解／task → core `requirement-breakdown` + Web `web-requirement-breakdown`
+- Current／Target／Annotated、Browser comments、screenshots或Appshots關係整理 → `web-visual-reference-mapping`（report-only）
 - 已確認 Web feature 實作 → `web-feature-implementation`
+- 實際 route／state／viewport 複驗 → `web-browser-verification`（report-only）
+- Runtime diagnostics：optional、未導入；需要bounded question與permission gate後另走upgrade。
 - 程式碼 review → `code-review`
 - 測試案例與回歸矩陣 → `test-case-generation`
 - 技術文件、架構、交接 → `technical-documentation`

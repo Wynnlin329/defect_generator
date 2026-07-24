@@ -13,10 +13,10 @@
 - 最後更新日期：`2026-07-23`
 - 任務負責人：Codex；Unreleased source ref由使用者本輪直接執行指示授權
 - 優先級：Medium
-- Task status：`Implemented`
+- Task status：`Closed`
 - Verification status：`Tests Passed`
-- Review status：`Pending Review`
-- Repo status：`Uncommitted`
+- Review status：`Reviewed`
+- Repo status：`Committed`
 
 ### 1.1 Status Rules
 
@@ -255,14 +255,14 @@
 
 ### 17.5 Closure Decision
 
-- Final Task status：`Implemented`
+- Final Task status：`Closed`
 - Final Verification status：`Tests Passed`
-- Final Review status：`Pending Review`
-- Final Repo status：`Uncommitted`
-- [ ] 可關閉
-- [x] 有條件關閉
+- Final Review status：`Reviewed`
+- Final Repo status：`Committed`
+- [x] 可關閉
+- [ ] 有條件關閉
 - [ ] 不可關閉，需完成asset sync與validation
-- 結論：實作與驗證已完成；待使用者review與後續commit後可關閉。
+- 結論：實作、驗證、使用者確認與commit均已完成，任務關閉。
 
 ## 十八、執行紀錄
 

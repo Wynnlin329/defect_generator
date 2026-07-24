@@ -21,9 +21,11 @@
 
 ## Visual Inputs
 
-| Input ID | Type | Claimed location / state | Reproduced in browser? | Notes |
-| --- | --- | --- | --- | --- |
-| | annotation / screenshot / Appshot / reference image | | PASS / FAIL / NOT RUN / UNKNOWN | |
+| Input ID | Type | Mapping report / mapping ID | Claimed location / state | Reproduced in browser? | Notes |
+| --- | --- | --- | --- | --- | --- |
+| | annotation / screenshot / Appshot / reference image | | | PASS / FAIL / NOT RUN / UNKNOWN | |
+
+> Current / Target / Annotated relationships belong to `web-visual-reference-mapping`. This table records only the reference and actual Browser reproduction result.
 
 ## Verification Matrix
 

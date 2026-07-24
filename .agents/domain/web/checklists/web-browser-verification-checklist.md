@@ -7,6 +7,7 @@
 - [ ] verification remains report-only
 - [ ] annotation, screenshot, or Appshot input is not treated as code-change authorization
 - [ ] code changes, if authorized separately, remain owned by `web-feature-implementation`
+- [ ] material Current / Target / Annotated relationships reference `web-visual-reference-mapping` instead of being inferred inside Browser verification
 
 ## Capability and Safety
 

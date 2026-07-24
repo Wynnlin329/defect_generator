@@ -125,6 +125,28 @@ Current offline tests：
 
 現有 template `example.cy.ts` 應在新 task 中被具產品意義的 spec 取代。
 
+### Layer 6.4：Report-only visual reference mapping
+
+Project已導入`web-visual-reference-mapping`、report template與checklist。當confirmed Web task由Current／Target／Annotated、Browser comments、screenshots或Appshots驅動時：
+
+- 使用`C-*`、`T-*`、`A-*`、`R-*`與mapping IDs記錄visual inputs及anchors。
+- 依證據選擇`exact-condition`、`responsive-intent`或`semantic-only`；未知條件維持`UNKNOWN`。
+- 每個mapping使用`MAPPED`、`PARTIAL`、`UNMAPPED`或`UNKNOWN`，不得當成Browser `PASS`／`FAIL`。
+- original不可取得時記錄`original-unavailable`；derived screenshot不得冒充original annotation。
+- mapping只產出source hints、implementation acceptance及Browser re-verification conditions；不授權改檔、不寫入TASK assets。
+
+### Layer 6.5：Report-only browser verification
+
+Project已導入`web-browser-verification`、report template與checklist。當confirmed task需要實際rendered route、state、viewport、input或可見回歸證據時：
+
+- 記錄requested與actual route/state/viewport/input conditions。
+- 每個check使用`PASS`、`FAIL`、`NOT RUN`或`UNKNOWN`，並分開observation與inference。
+- screenshot、annotation或Appshot只作context，不等同DOM、interaction、network、E2E或cross-browser證據，也不授權改檔。
+- 修正仍由`web-feature-implementation`負責；修正後以相同條件重新驗證。
+- `web-runtime-diagnostics`目前未導入；若一般browser evidence無法解釋bounded symptom，先建立明確diagnostic question並確認permission gate，再評估upgrade。
+
+Local Vite server可用或build成功只代表環境可啟動，不等同產品browser verification完成。
+
 ### Layer 7：Live integration smoke
 
 只在 `docs/api-contract.md` 的 Live Integration Gate 滿足後執行：
