@@ -6,6 +6,8 @@
 - routes / pages / components:
 - APIs / external systems:
 - browser / viewport / deployment assumptions:
+- requested / actual route, state, viewport and input conditions:
+- annotation / screenshot / Appshot IDs（context only）:
 
 ## UI and State
 
@@ -43,6 +45,8 @@
 - unit / component tests:
 - build:
 - browser / manual checks:
+- browser verification report and PASS / FAIL / NOT RUN / UNKNOWN matrix:
+- runtime diagnostic observation / inference（若適用）:
 - project harness:
 - UNKNOWN / residual risks:
 - reviewer:

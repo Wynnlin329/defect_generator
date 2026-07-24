@@ -28,6 +28,7 @@
 8. install、type-check、lint、unit test、build、browser / manual validation 命令
 9. 支援的 browser、viewport、輸入方式與 accessibility baseline
 10. 既有 requirements、architecture、tasks、integration checklists 與 deployment 文件
+11. 是否已導入 `web-browser-verification`、`web-runtime-diagnostics`，以及實際 browser / diagnostic capability
 
 不得因某個檔名或相依套件就推定整套 framework、部署拓撲或 production 行為。
 
@@ -104,11 +105,13 @@ Web task 除 core 欄位外，應按適用性寫明：
 2. type-check / lint（若存在）
 3. affected unit / component tests（若存在）
 4. production-equivalent build（若存在）
-5. route、browser 或端對端驗證（若存在且本 task 需要）
+5. route、browser 或端對端驗證（若存在且本 task 需要）；已導入時由 `web-browser-verification` 產出 report-only evidence
 6. keyboard、focus、responsive、loading / empty / error 等 manual checks
 7. project validation harness 與 diff / documentation checks
 
 不得自行猜測命令，也不得把 build success 宣稱為 browser、accessibility、security 或 production integration 已驗證。無法執行的項目必須記錄原因與 residual risk。
+
+Browser annotation、screenshot、Appshot 或 equivalent visual context 只作為輸入；它們不授權改檔，也不單獨證明 DOM、interaction 或 browser behavior。實際驗證逐項使用 `PASS` / `FAIL` / `NOT RUN` / `UNKNOWN`。一般 browser evidence 無法解釋症狀時，才可依 permission gate 選配 `web-runtime-diagnostics`；不得繞過 capability、approval、authentication 或 sensitive-data boundary。
 
 ---
 

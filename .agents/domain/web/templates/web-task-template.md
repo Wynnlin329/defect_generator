@@ -50,6 +50,9 @@
 - unit / component tests:
 - production-equivalent build:
 - browser / route checks:
+- requested and actual route / state / viewport matrix:
+- browser verification evidence owner:
+- bounded runtime diagnostic question / permission gate:
 - keyboard / focus / responsive manual checks:
 - unavailable checks and residual risk:
 

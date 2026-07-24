@@ -18,7 +18,7 @@
 4. 以達成 task 的最小 coherent change 實作；不得順手遷移 framework、重寫 routing / state 或更換 build tool。
 5. 檢查 browser security boundary：untrusted input、DOM output、URL、public config、auth / storage、cross-origin request 與敏感 logging。
 6. 檢查 accessibility：semantic structure、keyboard、focus、name / role / state、status / error feedback 與支援 viewport。
-7. 依 project 已宣告能力執行 affected checks、type-check / lint、tests、production-equivalent build、browser / manual checks 與 project harness。
+7. 依 project 已宣告能力執行 affected checks、type-check / lint、tests、production-equivalent build、browser / manual checks 與 project harness。若 project 已導入 `web-browser-verification`，把實際 route / state / viewport 複驗交由該 report-only skill；一般 evidence 無法解釋症狀時才選配 `web-runtime-diagnostics`。
 8. 將未執行項目、失敗 baseline、environment limitation 與 residual risk 明確記錄，不放大驗證結論。
 9. 更新 task、必要文件與 integration checklist；若發現可跨 project 的 shared 缺口，另記 WGAP，不直接修改 workspace。
 
@@ -29,6 +29,7 @@
 - security / accessibility / responsive checks 已執行或明確標示 UNKNOWN
 - build success 未被誤述為完整 browser 或 production integration 驗證
 - project 文件與 task 狀態已同步
+- annotation-driven fix 具有獨立 task / 明確改檔授權，且修正後以相同條件完成 browser re-verification 或記錄 `NOT RUN` / `UNKNOWN`
 
 ## 停止條件
 

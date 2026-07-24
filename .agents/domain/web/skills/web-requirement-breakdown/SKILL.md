@@ -14,7 +14,8 @@
 6. 標示 browser、viewport、rendering / deployment assumption；不確定時使用 UNKNOWN 或待確認事項。
 7. 依 repo evidence 列出主修改點、連動點、測試入口與 project-declared validation commands。
 8. 將不在本次範圍、security / privacy risks、人工覆核及無法自動驗證項目寫入 task。
-9. 依 core 規則在 task 建立後停下等待確認；使用者已明確要求直接實作時才可繼續。
+9. 若 acceptance 需要實際 rendered route / state / viewport evidence，且 project 已導入 `web-browser-verification`，在 task 列出對應 verification matrix；若需要 console / network / DOM / applied-style / performance evidence，另外寫明 bounded diagnostic question 與 permission gate。
+10. 依 core 規則在 task 建立後停下等待確認；使用者已明確要求直接實作時才可繼續。
 
 ## 最小輸出
 
