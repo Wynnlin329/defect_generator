@@ -2,7 +2,7 @@
 
 set -uo pipefail
 
-PROJECT_HARNESS_VERSION="1.2.0"
+PROJECT_HARNESS_VERSION="1.2.1"
 BASELINE_FORMAT_VERSION="1"
 
 ROOT="$(pwd)"
@@ -371,7 +371,7 @@ EOF_CANDIDATES
 }
 
 check_hygiene() {
-  crlf_files="$(grep -Ilr "$(printf '\r')" . --exclude-dir=.git 2>/dev/null || true)"
+  crlf_files="$(grep -Ilr "$(printf '\r')" . --exclude-dir=.git --exclude-dir=node_modules 2>/dev/null || true)"
   if [ -n "$crlf_files" ]; then
     fail "CRLF files are present (fix: convert project text files to LF)"
     printf '%s\n' "$crlf_files" | sed 's/^/  /'

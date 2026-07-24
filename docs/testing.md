@@ -133,7 +133,8 @@ Project已導入`web-visual-reference-mapping`、report template與checklist。�
 - 依證據選擇`exact-condition`、`responsive-intent`或`semantic-only`；未知條件維持`UNKNOWN`。
 - 每個mapping使用`MAPPED`、`PARTIAL`、`UNMAPPED`或`UNKNOWN`，不得當成Browser `PASS`／`FAIL`。
 - original不可取得時記錄`original-unavailable`；derived screenshot不得冒充original annotation。
-- mapping只產出source hints、implementation acceptance及Browser re-verification conditions；不授權改檔、不寫入TASK assets。
+- mapping只產出source hints、implementation acceptance及Browser re-verification conditions；不授權改檔。mapping skill本身不寫TASK assets，但confirmed TASK workflow可依artifact policy保存report。
+- TASK-007已使用TASK-006既有真實證據完成project-local report-only smoke；兩組relationships為`MAPPED`。本次未重新執行Browser，既有TASK-006 Browser PASS僅作外部reference。
 
 ### Layer 6.5：Report-only browser verification
 

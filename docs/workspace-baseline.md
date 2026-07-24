@@ -2,18 +2,18 @@
 
 ## 文件目的
 
-本文件記錄 `defect_generator` 實際採用的 workspace baseline、copied assets、reference-only pointers、未導入項目、domain mapping 與 project-local overrides。它描述2026-07-20 retrofit及TASK-004、TASK-005、TASK-007 Web project-local upgrades後的現況，不代表未來workspace更新會自動同步到本project。
+本文件記錄 `defect_generator` 實際採用的 workspace baseline、copied assets、reference-only pointers、未導入項目、domain mapping 與 project-local overrides。它描述2026-07-20 retrofit及TASK-004、TASK-005、TASK-007、TASK-008 project-local upgrades後的現況，不代表未來workspace更新會自動同步到本project。
 
 ## 一、目前 Baseline
 
 - Workspace version：`v1.17.0`
 - Workspace 版本：`v1.17.0`
 - Workspace repo location：`/Users/aissens/Documents/workspace_git/workspace`
-- Workspace commit / ref：`280a1c1`
+- Workspace commit / ref：`21062f8`
 - 初次導入日期：`2026-07-20`
 - 最近升級日期：`2026-07-24`
 - 最近baseline更新日期：`2026-07-24`
-- 導入人員：Codex，依使用者確認的retrofit proposal與TASK-004、TASK-005、TASK-007執行
+- 導入人員：Codex，依使用者確認的retrofit proposal與TASK-004、TASK-005、TASK-007、TASK-008執行
 - 導入方式：`retrofit` + `project-local upgrade`
 - Project 類型：Vue 3 Web SPA / AI 瑕疵影像生成前端
 
@@ -32,9 +32,9 @@ Workspace repo lookup order：
 
 - Workspace repo location：`/Users/aissens/Documents/workspace_git/workspace`
 - Workspace version：`v1.17.0`
-- Workspace commit / ref：`280a1c1`
-- Workspace source state：正式release `v1.17.0` foundation + workspace changelog `Unreleased` Web Stage 2 browser verification與Optional visual reference mapping
-- Project harness version：`1.2.0`
+- Workspace commit / ref：`21062f8`
+- Workspace source state：正式release `v1.17.0` foundation + workspace changelog `Unreleased` Web Stage 2、Optional visual reference mapping與Project Harness v1.2.1 maintenance fix
+- Project harness version：`1.2.1`
 - Codex native adapters：`adopted`
 - Codex adapter canonical root：`.agents/core/skills/`
 - Codex adapter discovery root：`.agents/skills/`
@@ -120,7 +120,7 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 - Primary domain：`web`
 - Secondary capabilities：REST API、OAuth、AI model configuration、Canvas image processing、file upload/download、YAML、i18n、frontend testing
 - Domain selection rationale：主要交付物與高頻修改面是 browser UI、routing、state、Canvas interaction 與 API binding。
-- Task active capability：`TASK-007` Web visual reference mapping project-local adoption；目前為Closed、Tests Passed、Reviewed、Committed。
+- Task active capability：`TASK-007` Web visual reference mapping smoke + `TASK-008` Project Harness v1.2.1 sync；兩者均為Closed、Tests Passed、Reviewed、Committed。
 - Imported core assets：core base、4 skills、6 templates、1 checklist、project harness、Codex/Claude adapters。
 - Imported domain assets：Web domain base、4個skills、4個templates、2個checklists。
 - Imported domain MVP assets：Stage 1 minimum active set + Stage 2 required set + Optional visual reference mapping三件組。
@@ -135,6 +135,7 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 - Project-local overrides：`AGENTS.md`、`PLAN.md` 與 `docs/` 記錄 Web/API/Canvas/GPU 專案事實。
 - Workspace feedback reports：none。
 - Domain upgrade history：2026-07-22 TASK-004導入Web Stage 1最小active set；2026-07-23 TASK-005從ref `fda3769`導入Stage 2 required browser verification set；2026-07-24 TASK-007從ref `280a1c1`導入Optional visual reference mapping並同步active companions。
+- Core upgrade history：2026-07-24 TASK-008從workspace ref `21062f8`同步Project Harness v1.2.1，CRLF hygiene scan排除dependency-owned `node_modules/`，project-owned CRLF仍維持FAIL。
 
 未列於copied assets的Web資產不得視為已導入，也不以iOS domain assets代替。
 
@@ -191,7 +192,7 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 - [x] `.claude/skills/<name>/SKILL.md` 對應全部 copied core skills。
 - [x] `CLAUDE.md` 使用 `@AGENTS.md` relative import。
 - [x] adapter canonical target 都位於同 repo `.agents/core/skills/`。
-- [x] `scripts/project-check.sh`，Project harness version `1.2.0`。
+- [x] `scripts/project-check.sh`，Project harness version `1.2.1`。
 - [ ] Claude fresh-session runtime smoke — `UNKNOWN`；未執行。
 
 ### Core checklists
@@ -249,7 +250,7 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 
 ## 十、Validation Status
 
-- Project harness：`PASS`；安裝中的dependencies暫時移出project scan後，`bash scripts/project-check.sh --no-git`與`bash scripts/project-check.sh`均通過（version `1.2.0` / format `1`），隨後已恢復`node_modules`。
+- Project harness：`PASS`；`node_modules`維持原位時，`bash scripts/project-check.sh --no-git`與`bash scripts/project-check.sh`均通過（version `1.2.1` / format `1`）。Dependency-owned CRLF被排除，project-owned CRLF仍由workspace regression證明會FAIL。
 - Copied asset existence：`PASS`；由 project harness 驗證。
 - Web copied asset source parity：`PASS`；11個imported assets均與workspace ref `280a1c1`逐檔一致。
 - Retained core snapshot review：`PASS`；v1.17.0 core base與requirement差異只影響初次bootstrap／retrofit及Backend routing，本project active workflow不需同步。
@@ -267,4 +268,4 @@ Copied skills、templates 與 checklist 是 project-local snapshots；它們不�
 - 需求、bug、重構與驗證規則原則上先建立 `docs/tasks/TASK-xxx.md`，確認後才實作。
 - Copied core assets 是 project-local canonical；workspace pointers 只供查閱與升級比較。
 - Web task使用已導入的domain base、requirement/feature skills與task/integration templates；visual input關係由`web-visual-reference-mapping`整理，實際browser複驗由`web-browser-verification`產出report-only evidence；runtime diagnostics未導入。
-- 目前對齊評估：正式baseline為`v1.17.0`，project adoption ref為`280a1c1`的Unreleased Web Stage 2與Optional visual mapping；project governance與11個Web assets source parity `PASS`；Claude runtime `UNKNOWN`；既有offline unit/type-check/production build baseline `PASS`；真實mapping、browser、integration、deployment與production readiness不因本次治理升級自動成立。
+- 目前對齊評估：正式baseline為`v1.17.0`，Web asset adoption ref為`280a1c1`，Project Harness v1.2.1 source ref為`21062f8`；project governance與11個Web assets source parity `PASS`；TASK-006既有證據已完成project-local report-only mapping smoke，兩組關係為`MAPPED`；兩種project harness模式在`node_modules`存在時`PASS`；Claude runtime `UNKNOWN`；既有offline unit/type-check/production build baseline `PASS`；fresh Browser、cross-project、integration、deployment與production readiness不因本次治理升級自動成立。

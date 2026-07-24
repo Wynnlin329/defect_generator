@@ -6,7 +6,7 @@
 
 ## Current State
 
-- Status：retrofit completed / TASK-001至TASK-007 closed
+- Status：retrofit completed / TASK-001至TASK-008 closed
 - Primary domain：`web`
 - Domain assets：Web Stage 1 minimum active set + Stage 2 required browser verification + Optional visual reference mapping sets imported
 - Fallback：core + imported Web assets；未導入／不可用能力使用core-only
@@ -24,6 +24,8 @@
 - [x] 依TASK-005導入Web Stage 2 required browser verification assets；runtime diagnostics維持optional/not imported。
 - [x] 依TASK-006完成首頁browser comments指定的Announcement與empty-state新增專案按鈕樣式調整及same-condition browser verification。
 - [x] 依TASK-007導入Web Optional visual reference mapping assets並同步active companion routing。
+- [x] 依TASK-007使用TASK-006既有證據完成report-only mapping smoke；本次未重新執行Browser verification。
+- [x] 依TASK-008同步Project Harness v1.2.1；`node_modules`存在時兩種project-check模式均通過。
 - [x] project harness 與 checklist 最終驗證；產品 runtime validation 仍待 dependencies 與 tests baseline。
 - [x] 已建立並實作 `TASK-001`「前端 Runtime Config 與 Credential 安全基線」；offline tests通過，build/type-check baseline阻塞已記錄。
 

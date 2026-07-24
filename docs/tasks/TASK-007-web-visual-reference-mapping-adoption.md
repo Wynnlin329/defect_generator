@@ -109,6 +109,7 @@
 2. 匯入`web-visual-reference-mapping` skill、report template與checklist。
 3. 更新project routing、baseline與testing文件，明確區分mapping、implementation、browser verification與diagnostics owners。
 4. 保留產品程式、core/harness/adapters與optional runtime diagnostics不變。
+5. 使用TASK-006既有真實Annotation／Browser evidence完成一份report-only mapping smoke，不重新執行Browser verification。
 
 ## 六、本次範圍
 
@@ -116,6 +117,7 @@
 2. 新增visual mapping skill、report template與checklist。
 3. 更新`AGENTS.md`、`README.md`、`PLAN.md`、`docs/context.md`、`docs/testing.md`、baseline、task index與本task。
 4. 執行source parity、project/workspace governance與scope驗證。
+5. 由confirmed TASK workflow將mapping smoke report保存至`docs/tasks/TASK-007-assets/`。
 
 ## 七、不在本次範圍
 
@@ -143,7 +145,7 @@
 - 預期修改層級：copied domain assets與文件；無產品code/config變更。
 - 預期新增檔案：mapping skill、report template、checklist與本task。
 - 預期修改檔案：8個既有Web assets、project entry/baseline/readme/plan/context/testing/task index。
-- 可能連動修改檔案：無；actual visual mapping report由未來confirmed task產生。
+- 可能連動修改檔案：`docs/tasks/TASK-007-assets/web-visual-reference-mapping-smoke-report.md`；由本次confirmed task workflow保存。
 - 明確不應優先修改：產品code、task artifacts、core/adapters/harness與workspace。
 - 修改點定位理由：Optional capability會被project active visual-driven workflow使用，且需與既有companions成套同步。
 - 需同步檢查的測試：asset parity、project harness、workspace validator、diff/scope scan。
@@ -152,17 +154,18 @@
 ## 十、輸入、輸出與任務附件
 
 - 輸入：workspace `v1.17.0`、Unreleased ref `280a1c1`、WVAL、project ref `fda3769`與TASK-006 workflow evidence。
-- 輸出：11項project-local Web assets、同步routing、baseline與validation record。
+- 輸出：11項project-local Web assets、同步routing、baseline、validation record與TASK-006 evidence mapping smoke report。
 
 ### 10.1 Task Artifacts / Visual References
 
-- Artifact directory：N/A；本task不執行visual mapping，也不依賴visual original。
-- Visual references：TASK-006只作workflow suitability evidence，不作本task視覺輸入。
+- Artifact directory：`docs/tasks/TASK-007-assets/`；保存report-only mapping smoke，不保存或重建Annotation原圖。
+- Visual references：TASK-006既有Browser comments、selectors、修改前computed-style紀錄與既有Browser verification report。
 - External references：workspace WVAL與source ref透過baseline pointer取得。
 - Artifact handling checklist：
-  - [x] 本task不依賴可提交visual附件
-  - [x] 不需建立TASK-007 assets目錄
+  - [x] 本task不依賴可提交visual original
+  - [x] confirmed TASK workflow已建立TASK-007 assets目錄並保存mapping report
   - [x] 不宣稱TASK-006 original annotation已可取得或持久化
+  - [x] 未重新截圖，不宣稱存在derived screenshot
   - [x] project artifact未放入workspace shared paths
 
 ## 十一、驗收標準
@@ -175,13 +178,14 @@
 6. project harness、workspace validation、`git diff --check`與scope review通過。
 7. git diff不新增TASK-007以外的產品code、tests、package/lockfile或workspace修改。
 8. 不宣稱visual originals、runtime、pixel diff、cross-browser、E2E或production已驗證。
+9. TASK-006兩組Current／Annotated relationships均有stable IDs、comparison mode、asset disposition、implementation acceptance與Browser handoff；mapping status與既有Browser status保持分離。
 
 ## 十二、驗證方式
 
 - 單元測試：N/A；不改產品code。
 - 整合測試：N/A；不連線外部系統。
 - End-to-end / flow測試：N/A；不改rendered UI。
-- 手動驗證：source parity、inventory、routing、mapping/browser status separation與owner read-back。
+- 手動驗證：source parity、inventory、routing、completed mapping smoke、mapping/browser status separation與owner read-back。
 - 文件檢查：baseline/copy/not-imported、task compliance、stale wording與scope scan。
 - domain-specific validation：workspace WVAL已PASS；本task驗project adoption。
 - 預計命令：`cmp`、`find`、`rg`、project harness、workspace validator、`git diff --check`及`git status`。
@@ -190,7 +194,7 @@
 
 - 已知風險：`280a1c1`仍屬Unreleased，正式release可能變更內容或ref。
 - confirmed domain-specific risks：mapping status不可冒充Browser status；derived screenshot不可冒充original；sensitive/licensed visual需明確handling path。
-- 已知限制：本task不執行real visual mapping、Browser、cross-project或runtime validation。
+- 已知限制：本task只執行TASK-006 evidence的report-only mapping smoke；不重新執行Browser、cross-project、pixel diff、cross-browser或runtime validation。
 - 假設前提：使用者「幫我升級」表示接受上一輪已說明的Recommended project-local task及Unreleased ref。
 - 人工覆核需求：review actual import set、Unreleased residual risk與runtime diagnostics不匯入決策。
 
@@ -228,21 +232,21 @@
 
 ### 17.1 實際修改摘要
 
-- 實際新增檔案：本task、`web-visual-reference-mapping` skill、report template與checklist。
+- 實際新增檔案：本task、`web-visual-reference-mapping` skill、report template、checklist與`TASK-007-assets/web-visual-reference-mapping-smoke-report.md`。
 - 實際修改檔案：8個既有Web assets、`AGENTS.md`、`README.md`、`PLAN.md`、`docs/context.md`、`docs/testing.md`、baseline與task index。
 - 實際未修改但已確認無需修改的檔案：產品`src/**`、tests、package manifests、lockfile、runtime config、core/harness/adapters、optional runtime diagnostics與workspace shared/domain。
 - 與原預期不同之處：無。
-- 未納入本次處理但需記錄的項目：runtime diagnostics、actual mapping與Browser runtime。
+- 未納入本次處理但需記錄的項目：runtime diagnostics、Browser rerun、cross-browser、pixel diff與visual regression。
 
 ### 17.2 驗收與驗證結果
 
-- 驗收標準完成情況：8/8。
-- 已執行驗證：11項逐檔source parity、inventory/routing read-back、兩種project harness模式、workspace validator、`git diff --check`、stale wording/scope scan與project-local code review。
-- 驗證結果：11/11 source parity `PASS`；`bash scripts/project-check.sh --no-git`與`bash scripts/project-check.sh`均`PASS`；workspace validation與diff check `PASS`；code review無blocking finding。
-- 無法執行的驗證：actual visual mapping、Browser runtime、cross-project、pixel diff、cross-browser、E2E與production均未執行，符合本task範圍。
+- 驗收標準完成情況：9/9。
+- 已執行驗證：11項逐檔source parity、inventory/routing read-back、TASK-006 report-only mapping smoke、兩種project harness模式、workspace validator、`git diff --check`、stale wording/scope scan與project-local scope review。
+- 驗證結果：11/11 source parity `PASS`；兩組relationships均為`MAPPED`；project harness、workspace validation與diff check結果見本次第三次處理紀錄；沒有`src/**`差異。
+- 無法執行的驗證：Browser rerun、cross-project、pixel diff、cross-browser、E2E與production均未執行，符合本task範圍。
 - 未驗證風險：source ref仍為Unreleased；正式release後需再次parity check。
 - 替代檢查方式：N/A；未執行項目未以static mapping或workspace WVAL取代。
-- domain-specific validation結果：mapping/report/checklist三件組完整；mapping與Browser statuses、implementation owner、asset disposition及runtime diagnostic gate read-back均`PASS`。
+- domain-specific validation結果：mapping/report/checklist三件組完整；TASK-006 smoke有兩組`MAPPED`關係、所用asset disposition符合證據狀態，且mapping與既有Browser statuses、implementation owner及runtime diagnostic gate保持分離。
 
 ### 17.3 文件與DevOps同步
 
@@ -255,7 +259,7 @@
 
 ### 17.4 風險、後續與回補
 
-- 剩餘風險：Unreleased ref與real visual/runtime surfaces未驗。
+- 剩餘風險：Unreleased ref、Annotation originals與fresh Browser／cross-project runtime surfaces未驗。
 - 人工覆核需求：完成後由使用者review。
 - 後續task：正式workspace release後再做parity check。
 - 是否發現shared/core/domain缺口：否；採用已通過WVAL的workspace capability。
@@ -271,7 +275,7 @@
 - [x] 可關閉
 - [ ] 有條件關閉
 - [ ] 不可關閉，需完成asset sync與validation
-- 結論：實作、治理驗證、使用者確認與commit均已完成，任務關閉。
+- 結論：adoption與mapping smoke已實作、驗證、review並提交；mapping與Browser status保持分離。
 
 ## 十八、執行紀錄
 
@@ -287,6 +291,12 @@
 - 處理內容：同步8個active Web companions、匯入3個visual mapping assets、更新routing/baseline/testing文件並完成parity、harness、workspace與code review。
 - 結果：`Implemented` / `Tests Passed` / `Pending Review` / `Uncommitted`。
 
+### 第三次處理
+
+- 日期：`2026-07-24`
+- 處理內容：依已確認proposal，以TASK-006既有真實Annotation／Browser evidence建立report-only mapping smoke；完成11/11 source parity、兩種project harness、workspace validator、scope與diff檢查；未重新執行Browser、未修改產品程式、未導入runtime diagnostics。
+- 結果：`Implemented` / `Tests Passed` / `Pending Review` / `Uncommitted`。
+
 ## 十九、更新紀錄
 
 ### v0.1
@@ -296,3 +306,7 @@
 ### v0.2
 
 - 回填optional capability adoption、validation、review與conditional closure結果。
+
+### v0.3
+
+- 新增TASK-006 evidence mapping smoke與本次未提交validation紀錄。
